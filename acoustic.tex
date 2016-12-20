@@ -1,0 +1,545 @@
+
+%% bare_conf.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE conference paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE!
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+%%*************************************************************************
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[10pt, conference, compsocconf]{IEEEtran}
+% Add the compsocconf option for Computer Society conferences.
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[conference]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+
+\usepackage[cmex10]{amsmath}
+\usepackage{tikz}
+
+\definecolor{bluekeywords}{rgb}{0,0,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.64,0.08,0.08}
+\definecolor{xmlcomments}{rgb}{0.5,0.5,0.5}
+\definecolor{types}{rgb}{0.17,0.57,0.68}
+
+\usepackage{listings}
+
+\usepackage[]{algorithm}
+\usepackage{algorithmic}
+\usepackage{etoolbox}
+\usepackage{subfig}
+
+
+\newcommand{\algorithmicdoinparallel}{\textbf{do in parallel}}
+\makeatletter
+\AtBeginEnvironment{algorithmic}{%
+  \newcommand{\FORALLP}[2][default]{\ALC@it\algorithmicforall\ #2\ %
+    \algorithmicdoinparallel\ALC@com{#1}\begin{ALC@for}}%
+}
+\makeatother
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{property}[theorem]{Property}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{In-Situ machine learning for smart-homes and buildings: application to alarm sounds detection}
+
+
+% author names and affiliations
+% use a multiple column layout for up to two different
+% affiliations
+
+\author{\IEEEauthorblockN{Amaury Durand}
+\IEEEauthorblockA{Telecom Paris Tech\\
+Paris, France\\
+amaury.duran@qarnot-computing.com}
+\and
+\IEEEauthorblockN{Yanik Ngoko}
+\IEEEauthorblockA{Qarnot Computing and University of Paris 13\\
+Paris, France\\
+yanik.ngoko@qarnot-computing.com}
+\and
+\IEEEauthorblockN{Christophe C\'erin}
+\IEEEauthorblockA{University of Paris 13\\
+Paris, France\\
+christophe.cerin@lipn.univ-paris13.fr}
+}
+
+\maketitle
+
+
+\begin{abstract}
+The need to build real-time, context-aware, secure and intelligent system is pushing forward in-situ machine learning systems. 
+In this paper, we consider the implementation of such systems with the computing model promoted by 
+Qarnot computing. Qarnot introduced a utility computing model in which servers are distributed in homes and offices where they also 
+serve as heaters; the Qarnot servers also embed several sensors that, in the envrironment in which they are deployed, could continuously 
+collect diverse data related for instance to the temperature, humidity, Co2 etc. The goal of our paper is to show that with the Qarnot 
+platform, complex in-situ workflows for smart-homes and buildings could be developed. For this, we consider a typical problem that could be addressed in such environments: the detection of alarm sounds. Our paper proposes a general model for 
+orchestrating in-situ workflows on 
+the Qarnot platform and decline several implementations for alarm sounds detection. 
+We also provide an experimental evaluation of the implemented solutions where we 
+discuss of the acuracy and the runtime of the training process. The results we obtain are encouraging, they comfort the idea that the Qarnot
+ model is certainly one of the most effective platform for the decentralization of IoT and machine learning systems. 
+\end{abstract}
+
+\begin{IEEEkeywords}
+in-situ machine learning; decentralized IoT systems; alarm sounds detection;  performance evaluation
+
+\end{IEEEkeywords}
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+\section{Introduction} \label{Introduction}
+
+The question of the right computing architecture for the Internet of Things (IoT) has always be a main concern. At the first age of the 
+IoT revolution, this questioning led to the development of huge datacenters that integrate machine learning and Big Data systems. 
+However, this intial model showed several important limitations on privacy, Internet congestion, 
+response time~\cite{DBLP:conf/lcn/Roelands13}. As an alternative, several works propose to decentralize this original IoT model. 
+Such a decentralization could consist of deporting the IoT logic of traditional clouds into edge clouds or embedded 
+systems that serve for computing the intelligence of a smart environnment (home, building, city etc.). For machine learning, 
+this direction promotes {\it in-situ} solutions where one of the main challenge is to deploy complex machine learning 
+workloads into {\it modest} computing platforms available in homes, offices etc. In addition, for any machine learning problem, 
+we can then consider the calibration or the creation of context-aware datasets. 
+This paper follows this line of thought. In particular, we are convinced of the need to build decentralized machine learning 
+systems that could locally train and improve models from homes or buildings in which their sensory data is issued. 
+Our paper proposes a solution that follows this direction in considering the utility computing model introduced by 
+Qarnot computing. 
+
+	\begin{figure*}[htbp]
+	\centering
+	\subfloat[{\scriptsize A Q.rad }]{
+	\includegraphics[width=4.2cm,height=4.2cm]{./Figures/rad.png}
+	}
+	\subfloat[{\scriptsize The roles of the Q.ware }]{
+	\includegraphics[width=10.7cm,height=4.2cm]{./Figures/model.png}
+	}
+	\caption{The Qarnot model}
+	\label{fig:digital}
+	\end{figure*}
+
+
+Qarnot computing~\footnote{www.qarnot-computing.com} promotes a cloud computing model where heating, computing, 
+storage and networking is provided from a 
+single infrastructure. This latter consists of a network of geo-distributed servers deployed in homes, offices and buildings. 
+The Qarnot model is based on two main products. The first is a new model of servers (Q.rads) in which the cooling system is replaced by a 
+heat diffusion system, regulated by a thermostat. Each Q.rad (See Figure~\ref{fig:digital}) embeds several processors in addition to sensors 
+related to humidity, Co2, presence etc. The second Qarnot product is a new middleware (Q.ware) for on-demand computing. Q.ware manages 
+two types of requests: requests for the processing of cloud services  and requests for heating. Its goal is to deploy and 
+adjust the run of cloud workload such as to meet the heat demand on Q.rads. For more details about the Qarnot model, we refer the interested 
+reader to~\cite{DBLP:conf/europar/Ngoko16}. 
+
+In the viewpoint of data or processes, the Qarnot model is very rich for in-situ machine learning. Indeed, in the data viewpoint, 
+its sensing capacities can be used to create local datasets for any machine problem to solve at the scale of a home or building. 
+For this the Qarnot platform supports a data service (QaIoT) that collects sensory data in Q.rads 
+and make them available to programs designed for Q.rads. 
+In the viewpoint of processes, the distributed learning processes can be performed in the home or building for which we want to 
+build a learning system. For this, the Qarnot platform includes a software development kit (SDK) for building local orchestrations 
+of processes in homes, buildings or cities.
+The global objective of this paper is to show that with these two tools, 
+complex in-situ machine learning workflows could be developed for smart-homes and buildings. For this, we focus on the resolution 
+a problem that is interesting to address with in-situ learning: the construction if alarm sound classifiers. 
+The interest in this problem comes from the fact that the behavior of an alarm sound classifier will be related to the background noises that 
+it was trained with. Thus, depending on the environment in which we are, it is important to have the right background noises.
+
+Our paper makes three important contributions. Firstly, we introduce a general orchestration system for implementing in-situ 
+distributed learning frameworks and in particular, a solution for the alarm sounds detection, with the Qarnot SDK. 
+The proposed orchestrator assumes an upper level abstraction close to the one used in GraphLab~\cite{Low:2012:DGF:2212351.2212354} (data model 
+and update functions). However, the abstraction is adjusted and adapted to fit with the object oriented interface 
+of the Qarnot SDK. 
+The alarm detection framework we use for validating the orchestrator is based on Mel-frequency spectrum~\cite{Davis:1990:CPR:108235.108239} 
+and a Pareto-selection method for choosing the best classifier from several techniques. The techniques include: the support vector 
+machine, the logistic regression and the K-Nearest Neighbour. Our second contribution is to propose several possible parallel 
+implementations for training the alarm framework. The implementations are based on the orchestrator we proposed.  
+Finally, we explore these different implementations and evaluate them on accuracy, 
+false and true positive rate and runtime performance. This evaluation clearly states how we can decide on the most appropriate 
+implementation.
+
+The remainder of the paper is organized as follows. In Section~\ref{Related}, we present the related works. 
+In Section~\ref{Framework}, we discuss of the acoustic alarm detection framework that we consider. In Section~\ref{Model}, we describe 
+the key services that the Qarnot platform offers for in-situ machine learning. In Section~\ref{Orchestrator}, we explain 
+how we implement the training process of the framework that we introduced. A performance evaluation is done in 
+Section~\ref{Proof-of-concept} and we conclude in Section~\ref{Conclusion}.
+
+
+
+
+\section{Related work} \label{Related}
+
+
+Our contribution is to put into perpective with the recent advances that led to the profusion of tools for parallel 
+machine learning. Our work is also related to prior contributions in machine learning for acoustic alarm detection. 
+
+Regarding recent parallel machine learning tools, we propose to distinguish between three main trends. 
+The first trend includes the development of orchestrators for Big Data systems that are based on Hadoop~\footnote{http://hadoop.apache.org/}, Spark~\cite{Zaharia:2010:SCC:1863103.1863113} or related systems. 
+In these solutions, the parallelism is generally formulated within the Map-reduce paradigm~\cite{DBLP:journals/cacm/DeanG10}. 
+In the second trend, the restriction of the Map-reduce paradim are overcomed in using more general graph-based abstractions like 
+the DAGs. Here, we are thinking to solutions that are related to 
+the distributed GraphLab~\cite{Low:2012:DGF:2212351.2212354}.  Finally the last trend is related to the development of parallel 
+systems for the the implementation of deep learning algorithms. Here, the key novelty is to exploit the parallelism at the GPU 
+level~\cite{Raina:2009:LDU:1553374.1553486}.
+Differently to these solutions, our proposition is neither based on Map-reduce, nor on GPUs. As already said, the orchestor we introduce 
+is based on an upper layer abstraction close to the one we can find in GraphLab. However, our conceptualization manipulates object 
+oriented concepts of the Qarnot SDK. In addition, our solution is specially designed for in-situ learning. 
+
+
+The field of supervised machine learning for audio classification (that includes alarm sound detection) is well-established. There is a 
+large consensus on the class of features that are meaningful in this context~\cite{Mckinney03featuresfor,DBLP:journals/taslp/JoderER09} 
+and some classification 
+methods like the logistic regression has been successfully applied in several cases. It was also showed 
+that for sound detection systems to work in the real-world, it is important that the classifiers be trained with 
+background noises that are representative of the environment in which the classifiers will operate~\cite{DBLP:conf/icassp/SalamonB15}. 
+In other words, {\it in-situ} and context-aware learning is welcome on the problem. 
+
+On this point, the work of Diane Watson et al.~\cite{watson_-situ_2012} shows that music recommender system can be improved if we 
+account on the context in which the listener is. There are also several works like the one of Chu et al.~\cite{Chu:2009:ESR:1650051.1650059} 
+that focus on the classification of audio environments. The work that we found closely related to ours is the Auditeur system~\cite{Nirjon:2013:AMS:2462456.2464446}. The system proposes a context-aware solution for acoustic events detection on smartphones. 
+The Auditeur system is composed of: a phone client that captures, processes and can run a {\it classification plan} and a cloud 
+service that based on audio and contextual information sent by a phone could generate an appropriate classification plan to be 
+followed at the smartphone level. We did not investigate whether or not the workflow we propose could be applied 
+to any acoustic event. But the main difference between our work and Auditeur is that we propose to collect and process 
+data in a same environment. It is obvious to notice that such a solution is more interesting for real-time and security.
+
+
+
+\section{Training framework for alarm sound detection } \label{Framework}
+
+\subsection{General problem}
+
+We assume a home with a fire-alarm and a set of Q.rads. Each Q.rad embeds two microphones and can record the input audio 
+stream. We also assume that when recorded, the input stream is discretized into blocks of $T$ seconds that are written into a 
+wav file. {\it The goal is to build  a detection system that given any wav file of $T$ seconds could state whether or not it contains 
+an alarm sound}.
+
+The system to build has $3$ subsystems: a data collection system, a training system and a decision system. 
+The data collection system creates the dataset of wav files that will be used for training and validation. 
+From the training dataset, the training system is able to generate the subset of dominant classifiers in considering 
+the SVM, logistic regression and KNN techniques. Assuming we have classifiers that are trained for each input audio, 
+the decision system states whether or not the audio contains a fire-alarm sound.
+
+Our paper will mainly focus on the training system. However, we will shortly discuss of the data collection system in order 
+to explain how we create training dataset in-situ.
+
+
+\subsection{Data collection}
+
+The challenging question here is to make sure that the data used for building the classifiers are representative of the environment 
+in which the Q.rads are. For this, we propose to consider two main approaches. The first is to interact with the user in the 
+home in order to record audio that includes an alarm sound and those that do not. In this way, the data collection and training systems 
+could be seen as a {\it machine teaching system}. In this philosophy, let us notice that the expertise and level of cooperation 
+of the user will decide on the quality of the generated classifiers. 
+The second approach (that we will prefer) consists of the automatic generation of the dataset. 
+For this, we suppose that we have a basis of alarm sounds that are the one we want to recognize. We also assume a basis of significative 
+sounds like a baby cry or a music. In these audio records (alarm and significative sounds), there is no background 
+noises. The goal of the data collection system is to create from this basis two datasets for training and evaluation where 
+the background noises of the environment is introduced. This is summarized in Figure~\ref{fig:gen}. 
+A challenge at this stage is to fix some programmability rules for recording 
+background noises. We must also decide on the date at which we consider that a set of classifiers could be generated for exploitation. 
+But due to space restriction, we will not discuss these details in this paper. However we will explain in Section~\ref{Model}, the 
+system architecture that Qarnot proposes for in-situ data collection and processing.
+
+
+	\begin{figure}[hbtp]
+	\begin{center}
+	%\fbox{
+	\input{./Figures/Aggregation.tex}
+	%}
+	\caption{Automatic generation of the dataset: we mix alarm and significative sounds with the local background noises.}
+	\label{fig:gen}
+	\end{center}
+	\end{figure}
+
+
+\subsection{Training system}
+
+In Figure~\ref{fig:training}, we illustrate the training framework we consider in our problem. The representation follows the 
+BPMN notation (An empty lozenge is a join and a lozenge with a plus is a fork...). 
+
+	\begin{figure*}[htbp]
+	\centering
+	\includegraphics[width=13cm, height=5 cm]{./Figures/workflow.png}
+	\caption{Training system}
+	\label{fig:training}
+	\end{figure*}
+
+The framework is based on 5 activities and subprocesses that we discuss below.
+
+\begin{itemize}
+
+\item {\bf PFE:} Given a set of wav files, the goal here is to extract the acoustic features of the wav files. PFE is a subprocess 
+consisting of a set of parallel activities where the acoustic features are separately computed from each dataset file. 
+The features we used are the classical ones used in signal processing (Mel-frequency spectrum~\cite{Davis:1990:CPR:108235.108239}, 
+energy etc.). Their complete list is defined in~\cite{pyAudioAnalysis}. 
+
+\item {\bf GSIN:} The framework implements a grid search process whose goal is to find the best classifiers depending on the 
+parameters we use. GSIN consists in the initialization of this grid search. The goal is to generate the possible configurations 
+we will use in the search of the best classifiers. 
+
+\item {\bf LKOC:} Given an input configuration (generated in GSIN), this subprocess starts with the run of a 
+time integration method whose goal is to refine the training features according to the input configuration. The idea is 
+to aggregate the values of acoustic features in time such as to refine the quality of information they provide. The integration 
+methods we used are defined in~\cite{DBLP:journals/taslp/JoderER09} (only taking the mean, the mean and variance and concatenating the features were implemented). With the refined features, the next activity in the subprocess consists in evaluating the classifier corresponding to the current configuration with a Leave-k-out cross-validation. Our learning techniques include: the SVM, logistic regression and KNN. 
+
+\item {\bf PSEL:} From a list of classifiers whose False and True Positive rates (FPR, TPR) are defined (generated in LKOCV or EVAL), we select the ones that are in the Pareto front where we minimize the FPR and maximize the TPR.
+
+\item {\bf EVAL:}  Assuming a list of classifiers and the input features of the testing dataset, we evaluate here the classifiers on the testing features. The TPR and FPR of each classifier are returned.
+
+\end{itemize}
+
+The proposed framework is parallel and distributed. In the next, we will discuss of the component of the Qarnot architecture for 
+its implementation.
+
+\section{Architecture and programming model} \label{Model}
+
+In the viewpoint of data, the network of Q.rads at the scale of a city or building is a composition of clusters, each 
+associated with a QaIoT server. A QaIoT server aggregates and manages the sensory data issued from the Q.rads to which it is 
+connected. A program deployed on the a connected device (or a Q.rad) can get access to these data. For this purpose, 
+it must first register to the QaIoT server in sending an Http request where it declines: the nature of the device (Q.rad, 
+raspberry etc.), the Id of the device, the role it intends to play (e.g: access to the audio stream of the cluster). If the 
+request is accepted a websocket communication will  be established between the device and QaIoT in order to distribute the data 
+to service the data to the applicant program. Let us suppose that this communication can consist of servicing real-time data 
+to the applicant program. An illustration is provided in Figure~\ref{fig:arch}(a). 
+It is easy to notice that the mixer of Figure~\ref{fig:gen} can be implemented as an applicant program that request the audio streams  
+related to a home and then {\it mixes} the data with a set of alarms and signficant sounds.
+
+In the processing viewpont, the Qarnot SDK is based on three main concepts: the notion of task (referred to as {\it QTask}), 
+the notion of disk ({\it QDisk}) and the docker image. A task is an object oriented abstraction that natively refers to a 
+docker or a set of docker containers to deploy and run. A task is associated with a docker image defined in the 
+parameter {\it constants["DOCKER\_REPO"]}. We can specify a set of input files for a task in defining a resource disk. 
+The input disk is defined in the list parameter {\it resources}. A task has a name and can be composed by subtasks (or frames).  
+In these cases, the run of each subtask will cause the deployment of a docker image. The process run by a task is defined in 
+assigning a command line to the paramater {\it constants['DOCKER\_CMD']}. The execution will assume that the input files are available 
+from the disks defined in {\it resources}, and will generate a result disk if the task produces files.
+
+
+	\begin{figure*}[ht]
+	\centering
+	\subfloat[{ Data service}]{
+	\includegraphics[scale=0.34]{./Figures/DataService.png}
+	}
+	\subfloat[Example of scripts with the Qarnot SDK]{
+	\includegraphics[scale=0.34]{./Figures/sample.png}
+	}
+	\caption{Data service and Qarnot SDK example.} 
+	\label{fig:arch}
+	\end{figure*}
+
+An example of script with the Qarnot SDK is proposed in Figure~\ref{fig:arch}(b). Finally, for in-situ learning, let us notice that 
+in using the constants, of a task, we can constraint its execution to be done only on a Q.rad or a set of Q.rad.
+
+
+\section{Orchestrating the alarm detection framework} \label{Orchestrator}
+
+Cite and explain the main concepts of the orchestrators.
+
+Consiser a possible implementation of the framework (a graph)
+
+Write its implementation with the orchestrator.
+
+\section{Experimental evaluation} \label{Proof-of-concept}
+
+Consider diverse implementations of the workflow.
+
+Show the learning curves.
+
+Show the runtimes.
+
+
+\section{Conclusion} \label{Conclusion}
+
+[Todo: enrich the monitoring process of the orchestrator]
+
+
+
+\bibliographystyle{./IEEEtran}
+\bibliography{acoustic}
+
+
+
+
+% that's all folks
+\end{document}
+

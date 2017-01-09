@@ -39,6 +39,14 @@ Y.~Low, D.~Bickson, J.~Gonzalez, C.~Guestrin, A.~Kyrola, and J.~M. Hellerstein,
   the cloud,'' \emph{Proc. VLDB Endow.}, vol.~5, no.~8, pp. 716--727, Apr.
   2012.
 
+\bibitem{DBLP:journals/corr/BockKSKW16}
+\BIBentryALTinterwordspacing
+S.~B{\"{o}}ck, F.~Korzeniowski, J.~Schl{\"{u}}ter, F.~Krebs, and G.~Widmer,
+  ``madmom: a new python audio and music signal processing library,''
+  \emph{CoRR}, vol. abs/1605.07008, 2016. [Online]. Available:
+  \url{http://arxiv.org/abs/1605.07008}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Davis:1990:CPR:108235.108239}
 S.~B. Davis and P.~Mermelstein, ``Readings in speech recognition,'' A.~Waibel
   and K.-F. Lee, Eds.\hskip 1em plus 0.5em minus 0.4em\relax San Francisco, CA,

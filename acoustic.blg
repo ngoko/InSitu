@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/dev/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: acoustic.aux
 The style file: ./IEEEtran.bst
@@ -14,45 +14,45 @@ Database file #1: acoustic.bib
 Warning--empty booktitle in Davis:1990:CPR:108235.108239
 
 Done.
-You've used 14 entries,
+You've used 15 entries,
             4039 wiz_defined-function locations,
-            918 strings with 10972 characters,
-and the built_in function-call counts, 12810 in all, are:
-= -- 1023
-> -- 290
-< -- 127
-+ -- 162
-- -- 44
-* -- 631
-:= -- 1828
-add.period$ -- 32
-call.type$ -- 14
-change.case$ -- 16
+            925 strings with 11244 characters,
+and the built_in function-call counts, 13388 in all, are:
+= -- 1070
+> -- 311
+< -- 128
++ -- 172
+- -- 49
+* -- 663
+:= -- 1932
+add.period$ -- 34
+call.type$ -- 15
+change.case$ -- 17
 chr.to.int$ -- 306
-cite$ -- 15
-duplicate$ -- 887
-empty$ -- 1051
-format.name$ -- 56
-if$ -- 2985
+cite$ -- 16
+duplicate$ -- 932
+empty$ -- 1095
+format.name$ -- 62
+if$ -- 3110
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 148
-newline$ -- 65
-num.names$ -- 16
-pop$ -- 333
+int.to.str$ -- 15
+missing$ -- 158
+newline$ -- 70
+num.names$ -- 17
+pop$ -- 357
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 982
+skip$ -- 1026
 stack$ -- 0
-substring$ -- 727
-swap$ -- 762
-text.length$ -- 25
+substring$ -- 728
+swap$ -- 793
+text.length$ -- 26
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 14
+type$ -- 15
 warning$ -- 1
-while$ -- 70
-width$ -- 16
-write$ -- 162
+while$ -- 71
+width$ -- 17
+write$ -- 174
 (There was 1 warning)

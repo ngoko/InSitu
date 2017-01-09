@@ -191,6 +191,7 @@
 \definecolor{LightGray}{rgb}{0.9, 0.9, 0.9}
 \usepackage{verbatim}
 \usepackage{caption}
+\usepackage{mdframed}
 
 \newcommand{\algorithmicdoinparallel}{\textbf{do in parallel}}
 \makeatletter
@@ -279,7 +280,7 @@ in-situ machine learning; decentralized IoT systems; alarm sounds detection;  pe
 
 \section{Introduction} \label{Introduction}
 
-The question of the right computing architecture for the Internet of Things (IoT) has always be a main concern. At the first age of the 
+The question of the right computing architecture for the Internet of Things (IoT) has always been a main concern. At the first age of the 
 IoT revolution, this questioning led to the development of huge datacenters that integrate machine learning and Big Data systems. 
 However, this intial model showed several important limitations on privacy, Internet congestion, 
 response time~\cite{DBLP:conf/lcn/Roelands13}. As an alternative, several works propose to decentralize this original IoT model. 
@@ -311,7 +312,7 @@ Qarnot computing.
 
 Qarnot computing~\footnote{www.qarnot-computing.com} promotes a cloud computing model where heating, computing, 
 storage and networking is provided from a 
-single infrastructure. This latter consists of a network of geo-distributed servers deployed in homes, offices and buildings. 
+single infrastructure. The latter consists in a network of geo-distributed servers deployed in homes, offices and buildings. 
 The Qarnot model is based on two main products. The first is a new model of servers (Q.rads) in which the cooling system is replaced by a 
 heat diffusion system, regulated by a thermostat. Each Q.rad (See Figure~\ref{fig:digital}) embeds several processors in addition to sensors 
 related to humidity, $\mathrm{CO_2}$, presence etc. The second Qarnot product is a new middleware (Q.ware) for on-demand computing. Q.ware manages 
@@ -335,24 +336,21 @@ it was trained with. Thus, depending on the environment in which we are, it is i
 Our paper makes three important contributions. Firstly, we introduce a general orchestration system for implementing in-situ 
 distributed learning frameworks and in particular, a solution for the alarm sounds detection, with the Qarnot SDK. 
 The proposed orchestrator assumes an upper level abstraction close to the one used in GraphLab~\cite{Low:2012:DGF:2212351.2212354} (data model 
-and update functions). However, the abstraction is adjusted and adapted to fit with the object oriented interface 
+and update functions) and the concept of {\it Processors} used in the \texttt{madmom} library \cite{DBLP:journals/corr/BockKSKW16}. However, the abstraction is adjusted and adapted to fit with the object oriented interface 
 of the Qarnot SDK. 
-The alarm detection framework we use for validating the orchestrator is based on energy, spectral and Mel-frequency spectral features~\cite{Davis:1990:CPR:108235.108239}, \cite{pyAudioAnalysis}
-and a Pareto-selection method for choosing the best classifier from several techniques. The techniques include: the support vector 
-machine, the logistic regression and the K-Nearest Neighbour. Our second contribution is to propose several possible parallel 
+The alarm detection framework we use for validating the orchestrator is based on energy, spectral and Mel-frequency cepstral features~\cite{Davis:1990:CPR:108235.108239}, \cite{pyAudioAnalysis}
+and a Pareto-selection method for choosing the best classifier from several techniques. % ATTENTION ICI : LES TECHNIQUES SONT EVALUEES SEPAREMENT DONC C'EST PAS VRAIMENT CA
+The techniques include: the support vector machine, the logistic regression and the K-Nearest Neighbour. Our second contribution is to propose several possible parallel % SEVERAL ? JE PENSE QU'ON AURA LE TEMPS QUE POUR UNE SEULE
 implementations for training the alarm framework. The implementations are based on the orchestrator we proposed.  
 Finally, we explore these different implementations and evaluate them on accuracy, 
 false and true positive rate and runtime performance. This evaluation clearly states how we can decide on the most appropriate 
-implementation.
+implementation. % PROBLEME ICI ON N'AURA PAS LE TEMPS DE TESTER PLUSIEURS IMPLEMENTATIONS
 
 The remainder of the paper is organized as follows. In Section~\ref{Related}, we present the related works. 
 In Section~\ref{Framework}, we discuss of the acoustic alarm detection framework that we consider. In Section~\ref{Model}, we describe 
 the key services that the Qarnot platform offers for in-situ machine learning. In Section~\ref{Orchestrator}, we explain 
 how we implement the training process of the framework that we introduced. A performance evaluation is done in 
 Section~\ref{Proof-of-concept} and we conclude in Section~\ref{Conclusion}.
-
-
-
 
 \section{Related work} \label{Related}
 
@@ -545,9 +543,11 @@ To sum up, there are 4 subclasses of QWork : QFunc for basic functions, QTasks f
 
 By combining all these concepts, complex workflows can be implemented. Note that a QWorkflows can be put in a QParallelWork to run multiple workflows simultaneously. 
 
-Algorithms \ref{alg:Qwork}, \ref{alg:Qtask}, \ref{alg:Qparallel}, \ref{alg:Qworkflow} sum up in pseudo-code the ways these concepts handle a given input. 
+Algorithms \ref{alg:Qwork}, \ref{alg:Qtask}, \ref{alg:Qparallel}, \ref{alg:Qworkflow} sum up in pseudo-code the ways these concepts handle a given input. A QWork will call its \texttt{process} method. A QFunc's \texttt{process} method calls the function. A QTask will add the inputs to its resources and submit the task to the Q.Ware scheduler. A QParallelWork will submit all QTasks and run all other QWorks in different threads and then wait for all of them to finish. A QWorkflow will run all its QWorks sequentially.
 
-Note that all QWorks need a QData as input, therefore if one wants do create a QFunc with multiple input there are two ways :
+Note that all QWorks which are not QTasks are processed locally, where the global QWorkflow is running, and all QTasks are submited to the Q.Ware scheduler for parallel processing. Moreover, the QTasks can be constrained to run the Q.rads of a house, a building on several buildings. In-Situ machine learning can then be done by running the global QWorkflow on one Q.rad of the house and constraining the QTasks to all the house's Q.rads.
+
+In all the algorithms presented, QWorks need a QData as input, therefore if one wants do create a QFunc with multiple input there are two ways :
 \begin{itemize}
 \item Get inputs as different QData rows then differentiate inputs according to the \texttt{sender} (see for example \texttt{f211} in figure \ref{fig:orch_ex})
 \item Put a dictionary in the QData \texttt{data} column (see for example QCreateDisk below)
@@ -619,7 +619,7 @@ Note that all QWorks need a QData as input, therefore if one wants do create a Q
 In the next subsections, we present a simple example and an implementation of the framework using the orchestrator.
  
 \subsection{A simple orchestration example}
-We present here a simple example using the orchestration, the workflow consists in basic operations on numbers but shows how to use the different concepts to go from a diagram to the code. The diagram is presented, the \texttt{python} code in figure and a part of the \texttt{stdout} are presented in figure \ref{fig:orch_ex}
+We present here a simple example using the orchestration, the workflow consists in basic operations on numbers but shows how to use the different concepts to go from a diagram to the code. The diagram, the \texttt{python} code  and a part of the \texttt{stdout} are presented in figure \ref{fig:orch_ex}
 \begin{figure*}[hbtp]
   \centering
   \begin{tabular}[c]{cc}
@@ -730,18 +730,17 @@ To implement the framework with the orchestrator, we defined subclasses of QTask
 \item \textbf{QDownloadResults:} (inherits from QFunc) This is to download the selected classifiers and the results.
 \end{itemize}
 Figures \ref{fig:implementation_diagram} and \ref{fig:implementation_code} show a possible implementation of the framework using the orchestrator. Note that we added a QCreateDisk after QExtractFeaturesTask, this is to get the code for selection in the results disk given by the QExtractFeaturesTask. This could be avoided by putting the code in the docker repository used for the tasks.
-
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.4]{Figures/implementation_vertical.png}
 \caption{A possible implementation of the framework using the orchestrator. The green dotted box represents a QParallelWork instance and the red dotted boxes represent QWorkflow instances.}
 \label{fig:implementation_diagram}
 \end{figure}
-\inputminted[baselinestretch=1, bgcolor=LightGray,fontsize=\scriptsize]{python}{selection.py}
+\begin{mdframed}[backgroundcolor=LightGray,topline=false, bottomline=false,leftline=false, rightline=false]
+\inputminted[baselinestretch=1, fontsize=\scriptsize]{python}{selection.py}
+\end{mdframed}
 \captionof{figure}{Source code of the proposed implementation.}
 \label{fig:implementation_code}
-
-
 \section{Experimental evaluation} \label{Proof-of-concept}
 
 Show the learning curves.

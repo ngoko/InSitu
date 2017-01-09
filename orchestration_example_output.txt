@@ -1,0 +1,145 @@
+FROM workflow : input : 
+data     sender   receiver 
+2        init     f1       
+3        init     f211     
+
+FROM workflow : selected input : 
+data     sender   receiver 
+2        init     f1       
+3        init     f211     
+
+FROM workflow : launching "f1"
+FROM f1 : input : 
+data     sender   receiver 
+2        init     f1       
+3        init     f211     
+
+FROM f1 : selected input : 
+data     sender   receiver 
+2        init     f1       
+
+FROM f1 : processing
+FROM workflow : launching "f2"
+FROM f2 : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+4        f1       f221     
+4        f1       f3       
+
+FROM f2 : selected input : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+4        f1       f221     
+
+FROM f2 : thread "f21" started
+FROM f21 : input : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+4        f1       f221     
+
+FROM f21 : selected input : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+
+FROM f21 : launching "f211"
+FROM f211 : input : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+
+FROM f211 : selected input : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+
+FROM f211 : processing
+FROM f21 : launching "f212"
+FROM f212 : input : 
+data     sender   receiver 
+12       f211     f212     
+
+FROM f212 : selected input : 
+data     sender   receiver 
+12       f211     f212     
+
+FROM f212 : processing
+FROM f22 : input : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+4        f1       f221     
+FROM f2 : thread "f22" started
+
+FROM f22 : selected input : 
+data     sender   receiver 
+4        f1       f221     
+
+FROM f22 : launching "f221"
+FROM f221 : input : 
+data     sender   receiver 
+4        f1       f221     
+
+FROM f221 : selected input : 
+data     sender   receiver 
+4        f1       f221     
+
+FROM f221 : processing
+FROM f22 : launching "f222"
+FROM f222 : 
+data     sender   receiver 
+5        f221     f2221    
+5        f221     f2222    
+
+FROM f222 : selected input : 
+data     sender   receiver 
+5        f221     f2221    
+5        f221     f2222    
+
+FROM f2221 : input : 
+data     sender   receiver 
+5        f221     f2221    
+5        f221     f2222    
+FROM f222 : thread "f2221" started
+
+FROM f2221 : selected input : 
+data     sender   receiver 
+5        f221     f2221    
+
+FROM f2221 : processing
+FROM f2222 : input : 
+data     sender   receiver 
+5        f221     f2221    
+5        f221     f2222    
+FROM f222 : thread "f2222" started
+
+FROM f222 : thread "f2221" ended
+FROM f2222 : selected input : 
+data     sender   receiver 
+5        f221     f2222    
+
+FROM f2222 : processing
+FROM f222 : thread "f2222" ended
+FROM f2 : thread "f22" ended
+FROM f2 : thread "f21" ended
+FROM workflow : launching "f3"
+FROM f3 : input : 
+data     sender   receiver 
+4        f1       f3       
+4.0      f212     f3       
+3        f2221    f3       
+2        f2222    f3       
+
+FROM f3 : selected input : 
+data     sender   receiver 
+4        f1       f3       
+4.0      f212     f3       
+3        f2221    f3       
+2        f2222    f3       
+
+FROM f3 : processing
+13.0
+

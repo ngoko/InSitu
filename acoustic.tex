@@ -184,9 +184,13 @@
 
 \usepackage[]{algorithm}
 \usepackage{algorithmic}
+\usepackage{subcaption}
 \usepackage{etoolbox}
-\usepackage{subfig}
-
+\usepackage{minted}
+\usepackage{color}
+\definecolor{LightGray}{rgb}{0.9, 0.9, 0.9}
+\usepackage{verbatim}
+\usepackage{caption}
 
 \newcommand{\algorithmicdoinparallel}{\textbf{do in parallel}}
 \makeatletter
@@ -224,9 +228,9 @@
 % affiliations
 
 \author{\IEEEauthorblockN{Amaury Durand}
-\IEEEauthorblockA{Telecom Paris Tech\\
+\IEEEauthorblockA{Telecom ParisTech\\
 Paris, France\\
-amaury.duran@qarnot-computing.com}
+amaury.durand@telecom-paristech.fr}
 \and
 \IEEEauthorblockN{Yanik Ngoko}
 \IEEEauthorblockA{Qarnot Computing and University of Paris 13\\
@@ -247,7 +251,7 @@ The need to build real-time, context-aware, secure and intelligent system is pus
 In this paper, we consider the implementation of such systems with the computing model promoted by 
 Qarnot computing. Qarnot introduced a utility computing model in which servers are distributed in homes and offices where they also 
 serve as heaters; the Qarnot servers also embed several sensors that, in the envrironment in which they are deployed, could continuously 
-collect diverse data related for instance to the temperature, humidity, Co2 etc. The goal of our paper is to show that with the Qarnot 
+collect diverse data related for instance to the temperature, humidity, $\mathbf{CO_2}$ etc. The goal of our paper is to show that with the Qarnot 
 platform, complex in-situ workflows for smart-homes and buildings could be developed. For this, we consider a typical problem that could be addressed in such environments: the detection of alarm sounds. Our paper proposes a general model for 
 orchestrating in-situ workflows on 
 the Qarnot platform and decline several implementations for alarm sounds detection. 
@@ -290,13 +294,16 @@ Our paper proposes a solution that follows this direction in considering the uti
 Qarnot computing. 
 
 	\begin{figure*}[htbp]
-	\centering
-	\subfloat[{\scriptsize A Q.rad }]{
-	\includegraphics[width=4.2cm,height=4.2cm]{./Figures/rad.png}
-	}
-	\subfloat[{\scriptsize The roles of the Q.ware }]{
-	\includegraphics[width=10.7cm,height=4.2cm]{./Figures/model.png}
-	}
+          \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=4.2cm,height=4.2cm]{./Figures/rad.png}
+            \caption{\scriptsize A Q.rad }
+          \end{subfigure}
+          \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=10.7cm,height=4.2cm]{./Figures/model.png}
+            \caption{\scriptsize The roles of the Q.ware }
+          \end{subfigure}
 	\caption{The Qarnot model}
 	\label{fig:digital}
 	\end{figure*}
@@ -307,7 +314,7 @@ storage and networking is provided from a
 single infrastructure. This latter consists of a network of geo-distributed servers deployed in homes, offices and buildings. 
 The Qarnot model is based on two main products. The first is a new model of servers (Q.rads) in which the cooling system is replaced by a 
 heat diffusion system, regulated by a thermostat. Each Q.rad (See Figure~\ref{fig:digital}) embeds several processors in addition to sensors 
-related to humidity, Co2, presence etc. The second Qarnot product is a new middleware (Q.ware) for on-demand computing. Q.ware manages 
+related to humidity, $\mathrm{CO_2}$, presence etc. The second Qarnot product is a new middleware (Q.ware) for on-demand computing. Q.ware manages 
 two types of requests: requests for the processing of cloud services  and requests for heating. Its goal is to deploy and 
 adjust the run of cloud workload such as to meet the heat demand on Q.rads. For more details about the Qarnot model, we refer the interested 
 reader to~\cite{DBLP:conf/europar/Ngoko16}. 
@@ -321,7 +328,7 @@ build a learning system. For this, the Qarnot platform includes a software devel
 of processes in homes, buildings or cities.
 The global objective of this paper is to show that with these two tools, 
 complex in-situ machine learning workflows could be developed for smart-homes and buildings. For this, we focus on the resolution 
-a problem that is interesting to address with in-situ learning: the construction if alarm sound classifiers. 
+a problem that is interesting to address with in-situ learning: the construction of alarm sound classifiers. 
 The interest in this problem comes from the fact that the behavior of an alarm sound classifier will be related to the background noises that 
 it was trained with. Thus, depending on the environment in which we are, it is important to have the right background noises.
 
@@ -330,7 +337,7 @@ distributed learning frameworks and in particular, a solution for the alarm soun
 The proposed orchestrator assumes an upper level abstraction close to the one used in GraphLab~\cite{Low:2012:DGF:2212351.2212354} (data model 
 and update functions). However, the abstraction is adjusted and adapted to fit with the object oriented interface 
 of the Qarnot SDK. 
-The alarm detection framework we use for validating the orchestrator is based on Mel-frequency spectrum~\cite{Davis:1990:CPR:108235.108239} 
+The alarm detection framework we use for validating the orchestrator is based on energy, spectral and Mel-frequency spectral features~\cite{Davis:1990:CPR:108235.108239}, \cite{pyAudioAnalysis}
 and a Pareto-selection method for choosing the best classifier from several techniques. The techniques include: the support vector 
 machine, the logistic regression and the K-Nearest Neighbour. Our second contribution is to propose several possible parallel 
 implementations for training the alarm framework. The implementations are based on the orchestrator we proposed.  
@@ -458,7 +465,7 @@ energy etc.). Their complete list is defined in~\cite{pyAudioAnalysis}.
 parameters we use. GSIN consists in the initialization of this grid search. The goal is to generate the possible configurations 
 we will use in the search of the best classifiers. 
 
-\item {\bf LKOC:} Given an input configuration (generated in GSIN), this subprocess starts with the run of a 
+\item {\bf LKOCV:} Given an input configuration (generated in GSIN), this subprocess starts with the run of a 
 time integration method whose goal is to refine the training features according to the input configuration. The idea is 
 to aggregate the values of acoustic features in time such as to refine the quality of information they provide. The integration 
 methods we used are defined in~\cite{DBLP:journals/taslp/JoderER09} (only taking the mean, the mean and variance and concatenating the features were implemented). With the refined features, the next activity in the subprocess consists in evaluating the classifier corresponding to the current configuration with a Leave-k-out cross-validation. Our learning techniques include: the SVM, logistic regression and KNN. 
@@ -483,28 +490,31 @@ request is accepted a websocket communication will  be established between the d
 to service the data to the applicant program. Let us suppose that this communication can consist of servicing real-time data 
 to the applicant program. An illustration is provided in Figure~\ref{fig:arch}(a). 
 It is easy to notice that the mixer of Figure~\ref{fig:gen} can be implemented as an applicant program that request the audio streams  
-related to a home and then {\it mixes} the data with a set of alarms and signficant sounds.
+related to a home and then {\it mixes} the data with a set of alarms and significant sounds.
 
-In the processing viewpont, the Qarnot SDK is based on three main concepts: the notion of task (referred to as {\it QTask}), 
+In the processing viewpoint, the Qarnot SDK is based on three main concepts: the notion of task (referred to as {\it QTask}), 
 the notion of disk ({\it QDisk}) and the docker image. A task is an object oriented abstraction that natively refers to a 
 docker or a set of docker containers to deploy and run. A task is associated with a docker image defined in the 
 parameter {\it constants["DOCKER\_REPO"]}. We can specify a set of input files for a task in defining a resource disk. 
 The input disk is defined in the list parameter {\it resources}. A task has a name and can be composed by subtasks (or frames).  
 In these cases, the run of each subtask will cause the deployment of a docker image. The process run by a task is defined in 
-assigning a command line to the paramater {\it constants['DOCKER\_CMD']}. The execution will assume that the input files are available 
+assigning a command line to the parameter {\it constants['DOCKER\_CMD']}. The execution will assume that the input files are available 
 from the disks defined in {\it resources}, and will generate a result disk if the task produces files.
 
 
 	\begin{figure*}[ht]
-	\centering
-	\subfloat[{ Data service}]{
-	\includegraphics[scale=0.34]{./Figures/DataService.png}
-	}
-	\subfloat[Example of scripts with the Qarnot SDK]{
-	\includegraphics[scale=0.34]{./Figures/sample.png}
-	}
-	\caption{Data service and Qarnot SDK example.} 
-	\label{fig:arch}
+          \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[scale=0.3]{./Figures/DataService.png}
+            \caption{Data service}
+          \end{subfigure}
+          \begin{subfigure}[b]{0.6\textwidth}
+            \centering
+            \inputminted[baselinestretch=1.2, bgcolor=LightGray, fontsize=\scriptsize]{python}{sample.py}
+            \caption{Example of scripts with the Qarnot SDK}
+          \end{subfigure}
+          \caption{Data service and Qarnot SDK example.} 
+          \label{fig:arch}
 	\end{figure*}
 
 An example of script with the Qarnot SDK is proposed in Figure~\ref{fig:arch}(b). Finally, for in-situ learning, let us notice that 
@@ -512,16 +522,227 @@ in using the constants, of a task, we can constraint its execution to be done on
 
 
 \section{Orchestrating the alarm detection framework} \label{Orchestrator}
+\subsection{The orchestrator}
+The orchestration method implemented for the framework relies on 2 basic concepts (implemented in \texttt{python}): 
+\begin{itemize}
+\item \textbf{QWork:} This represents a work to be done during the workflow. QWorks correspond to boxes in a diagram. They have 2 main attributes : \texttt{name} which enables to differentiate the QWorks and \texttt{nextname} which enables to define the next QWork in the workflow. A QWork also has a \texttt{process} method which represents the work to do. To make it even simpler, QWork instances are callable which means that they can be used as any function. 
+\item \textbf{QData:} This represents the inputs and outputs of QWorks. QData correspond to arrows in a diagram. A QData instance is a dictionary with 3 keys (it can be seen as a 3 columns table and we will keep this analogy for clarity): \texttt{data} (the actual data), \texttt{sender} (the name of the QWork which sends the data) and \texttt{receiver} (the name of the QWork which receives the data). 
+\end{itemize}
+These two concept work together as follows : let \texttt{w} be an instance of QWork and \texttt{d} and instance of QData. Running \texttt{w(d)} makes \texttt{w} look for its \texttt{name} in \texttt{d}'s \texttt{receiver} column and process the the corresponding row using the \texttt{process} method. In the \texttt{process} method, one can specify how to handle different \texttt{senders}.
 
-Cite and explain the main concepts of the orchestrators.
+Subclasses of QWork can then be defined to differentiate what is done locally and what is done in parallel using the Qarnot platform : 
+\begin{itemize}
+\item \textbf{QFunc:} a QFunc is a QWork which processes a particular function given when instantiating the class
+\item \textbf{QTask:} a QTask is a QWork and a Task (from the qarnot SDK). The QTask class has two particularities : 
+the first one is that its input must be a disk (which will be added it to the resources) or a serializable object (which will be put in a resource disk). This is done with a method called \texttt{add\_input\_to\_resources}. The second one is that there are two ways to run a QTask instance : \texttt{process} method (or calling the instance which is the same) which will submit the task and wait for it to be over, and the \texttt{submit} method which does not wait for the task to be over (which is useful for parallel tasks, see below). The output of a QTask is its results disk.
+\end{itemize}
+With these three tools (QData, QFunc, QTask) one could create basic parallel workflows composed of functions and tasks. To go a step further in the abstraction, we created two other subclasses of QWork that represent higher level concepts : 
+\begin{itemize}
+\item \textbf{QParallelWork:} A QParallelWork instance has a list of QWorks (except QTasks) and a list of QTasks and runs all of them in parallel using different threads (here QTasks and other QWorks were separated because we use the \texttt{submit} method for QTasks which does not exist in the others).
+\item \textbf{QWorklow:} This is the highest concept since it represents the workflow itself. A QWorkflow task has a list of QWorks and processes them sequentially
+\end{itemize}
+To sum up, there are 4 subclasses of QWork : QFunc for basic functions, QTasks for tasks, QParallelWork for multithreading and QWorkflow to combine them all. QData makes the link between them.
 
-Consiser a possible implementation of the framework (a graph)
+By combining all these concepts, complex workflows can be implemented. Note that a QWorkflows can be put in a QParallelWork to run multiple workflows simultaneously. 
 
-Write its implementation with the orchestrator.
+Algorithms \ref{alg:Qwork}, \ref{alg:Qtask}, \ref{alg:Qparallel}, \ref{alg:Qworkflow} sum up in pseudo-code the ways these concepts handle a given input. 
+
+Note that all QWorks need a QData as input, therefore if one wants do create a QFunc with multiple input there are two ways :
+\begin{itemize}
+\item Get inputs as different QData rows then differentiate inputs according to the \texttt{sender} (see for example \texttt{f211} in figure \ref{fig:orch_ex})
+\item Put a dictionary in the QData \texttt{data} column (see for example QCreateDisk below)
+\end{itemize}
+
+\begin{algorithm}[H]
+\caption{QWork call method}
+\label{alg:Qwork}
+\begin{algorithmic}
+\REQUIRE \texttt{d} a QData instance
+\ENSURE returns \texttt{d} without my input, with my output
+\STATE find my name in \texttt{d["receiver"]}, remove the corresponding rows from \texttt{d} and put them in \texttt{d'}
+\STATE out $\leftarrow$ \texttt{process}(\texttt{d'})
+\STATE add out to \texttt{d}
+\RETURN \texttt{d}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{QTask submit method}
+\label{alg:Qtask}
+\begin{algorithmic}
+\REQUIRE \texttt{d} a QData instance
+\ENSURE adds the input to resources and submits the task
+\STATE find my name in \texttt{d["receiver"]}, remove the corresponding rows from \texttt{d} and put them in \texttt{d'}
+\STATE \texttt{add\_input\_to\_resources}(\texttt{d'})
+\STATE submit the task
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{QParallelWork call method}
+\label{alg:Qparallel}
+\begin{algorithmic}
+\REQUIRE \texttt{d} a QData instance
+\ENSURE returns \texttt{d} without my QWorks and QTasks inputs and with the outputs
+\FOR{\texttt{w} in my list of QWorks and my list of QTasks}
+\STATE find \texttt{w.name} in \texttt{d["receiver"]}, remove the corresponding rows from \texttt{d} and put them in \texttt{d'}
+\ENDFOR
+\FOR{\texttt{w} in in my list of QWorks}
+\STATE find \texttt{w.name} in \texttt{d'["receiver"]}, remove the corresponding rows from \texttt{d} and put them in \texttt{d'}
+\STATE create a thread to run \texttt{w}($d''$)
+\ENDFOR
+\FOR{\texttt{t} in in my list of QTasks}
+\STATE find \texttt{t.name} in \texttt{d'["receiver"]}, remove the corresponding rows from \texttt{d} and put them in \texttt{d'}
+\STATE \texttt{t.add\_input\_to\_resources}(\texttt{d'})
+\STATE \texttt{t.submit()}
+\ENDFOR
+\STATE wait for every thread and every task to end
+\STATE add all outputs to \texttt{d}
+\RETURN \texttt{d}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{QWorkflow process method}
+\label{alg:Qworkflow}
+\begin{algorithmic}
+\REQUIRE \texttt{d} a QData instance
+\ENSURE runs the Qworks sequentially
+\STATE \texttt{in} $\leftarrow \texttt{d}$
+\FOR{\texttt{w} in my list of QWorks}
+\STATE \texttt{in} = \texttt{w}(\texttt{in})
+\ENDFOR
+\RETURN \texttt{in}
+\end{algorithmic}
+\end{algorithm}
+
+In the next subsections, we present a simple example and an implementation of the framework using the orchestrator.
+ 
+\subsection{A simple orchestration example}
+We present here a simple example using the orchestration, the workflow consists in basic operations on numbers but shows how to use the different concepts to go from a diagram to the code. The diagram is presented, the \texttt{python} code in figure and a part of the \texttt{stdout} are presented in figure \ref{fig:orch_ex}
+\begin{figure*}[hbtp]
+  \centering
+  \begin{tabular}[c]{cc}
+    \begin{subfigure}[b]{.55\textwidth}
+      \inputminted[baselinestretch=1, bgcolor=LightGray,fontsize=\footnotesize]{python}{orchestration_example.py}
+      \caption{Source code. The output is $13$}
+    \end{subfigure}
+    &
+    \begin{tabular}[b]{c}
+      \begin{subfigure}[t]{.5\textwidth}
+      \includegraphics[scale=0.5]{./Figures/orchestration_example_diagram.png}
+      \caption{Diagram}
+    \end{subfigure}\\
+
+    \begin{subfigure}[b]{.5\textwidth}
+{\footnotesize
+\begin{verbatim}
+FROM workflow : launching "f1"
+FROM f1 : input : 
+data     sender   receiver 
+2        init     f1       
+3        init     f211     
+FROM f1 : selected input : 
+data     sender   receiver 
+2        init     f1       
+FROM f1 : processing
+
+FROM workflow : launching "f2"
+FROM f2 : input :
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+4        f1       f221     
+4        f1       f3       
+FROM f2 : selected input : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+4        f1       f221     
+
+FROM f2 : thread "f21" started
+FROM f21 : selected input : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+
+FROM f21 : launching "f211"
+FROM f211 : selected input : 
+data     sender   receiver 
+3        init     f211     
+4        f1       f211     
+FROM f211 : processing
+
+FROM f21 : launching "f212"
+FROM f212 : selected input : 
+data     sender   receiver 
+12       f211     f212     
+FROM f212 : processing
+
+FROM f2 : thread "f22" started
+FROM f22 : selected input : 
+data     sender   receiver 
+4        f1       f221     
+FROM f22 : launching "f221"
+\end{verbatim}
+  }
+  \caption{Parts of \texttt{stdout}}
+\end{subfigure}
+\end{tabular}
+\end{tabular}
+\caption{Orchestration example}
+\label{fig:orch_ex}
+\end{figure*}
+\subsection{Implementation of the framework}
+To implement the framework with the orchestrator, we defined subclasses of QTask and QFunc for the specific processes.
+\begin{itemize}
+\item \textbf{QCreateDisk:} (inherits from QFunc) This function aims to create a disk with the dataset and all the code needed for selection.
+  Its particular inputs are (here we will use a dictionary for multiple inputs)
+  \begin{itemize}
+  \item The qarnot connection
+  \item The directories of the files to put in the disk
+  \item The labels of the data (one label per directory)
+  \item A disk (if a disk in given, this function only adds the code for selection)
+  \item The local root of directories and the one the user wants them to be in the disk
+  \end{itemize}
+\item \textbf{QExtractFeaturesTask:} (inherits from QTask) Given a disk of .wav file, a list of frame sizes and frame steps, this task separates the files in a number of portions and extracts features of each portion in parallel. The output is a disk containing .csv files with the features.
+  Its particular attributes (in addition to those inherited from QTask) are
+  \begin{itemize}
+  \item The frame sizes and steps for extraction
+  \item The remote root to find data
+  \end{itemize}
+\item \textbf{QLKOCVTask:} (inherits from QTask) Given a disk of .csv features files, a list of parameters for grid search, this task aims to perform grid search in parallel. Each parallel instance performs Leave-k-out cross validation on the dataset and writes in a file the false and true positive rates.
+  Its particular attributes are
+  \begin{itemize}
+  \item The classification method
+  \item The length (in samples) of the data
+  \item The remote root to find data
+  \item The grid of parameters to test (parameters for extracting features and hyperparameters, the grid is created from both types of parameters during the instanciation)
+  \item Other arguments for cross validation
+  \end{itemize}
+\item \textbf{QSelectionTask:} (inherits from QTask) This task takes the results from QLKOCVTask and performs Pareto-selection to get the best classifiers on the training set. Then it tests these classifiers on the test set and performs Pareto-selection again to select the best classifiers.
+  Its particular attributes are
+  \begin{itemize}
+  \item The classification method
+  \item The remote root to find data (train and test)
+  \item Other arguments for Pareto selection
+  \end{itemize}
+\item \textbf{QDownloadResults:} (inherits from QFunc) This is to download the selected classifiers and the results.
+\end{itemize}
+Figures \ref{fig:implementation_diagram} and \ref{fig:implementation_code} show a possible implementation of the framework using the orchestrator. Note that we added a QCreateDisk after QExtractFeaturesTask, this is to get the code for selection in the results disk given by the QExtractFeaturesTask. This could be avoided by putting the code in the docker repository used for the tasks.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{Figures/implementation_vertical.png}
+\caption{A possible implementation of the framework using the orchestrator. The green dotted box represents a QParallelWork instance and the red dotted boxes represent QWorkflow instances.}
+\label{fig:implementation_diagram}
+\end{figure}
+\inputminted[baselinestretch=1, bgcolor=LightGray,fontsize=\scriptsize]{python}{selection.py}
+\captionof{figure}{Source code of the proposed implementation.}
+\label{fig:implementation_code}
+
 
 \section{Experimental evaluation} \label{Proof-of-concept}
-
-Consider diverse implementations of the workflow.
 
 Show the learning curves.
 

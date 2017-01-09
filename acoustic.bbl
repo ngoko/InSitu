@@ -46,6 +46,11 @@ S.~B. Davis and P.~Mermelstein, ``Readings in speech recognition,'' A.~Waibel
   Representations for Monosyllabic Word Recognition in Continuously Spoken
   Sentences, pp. 65--74.
 
+\bibitem{pyAudioAnalysis}
+T.~Giannakopoulos, ``pyaudioanalysis: An open-source python library for audio
+  signal analysis,'' \emph{PLOS one}, vol.~10, no.~12, pp. 1--17, December
+  2015.
+
 \bibitem{Zaharia:2010:SCC:1863103.1863113}
 M.~Zaharia, M.~Chowdhury, M.~J. Franklin, S.~Shenker, and I.~Stoica, ``Spark:
   Cluster computing with working sets,'' in \emph{Proceedings of the 2Nd USENIX
@@ -97,10 +102,5 @@ S.~Nirjon, R.~F. Dickerson, P.~Asare, Q.~Li, D.~Hong, J.~A. Stankovic, P.~Hu,
   Annual International Conference on Mobile Systems, Applications, and
   Services}, ser. MobiSys '13.\hskip 1em plus 0.5em minus 0.4em\relax New York,
   NY, USA: ACM, 2013, pp. 403--416.
-
-\bibitem{pyAudioAnalysis}
-T.~Giannakopoulos, ``pyaudioanalysis: An open-source python library for audio
-  signal analysis,'' \emph{PLOS one}, vol.~10, no.~12, pp. 1--17, December
-  2015.
 
 \end{thebibliography}

@@ -255,10 +255,8 @@ serve as heaters; the Qarnot servers also embed several sensors that, in the env
 collect diverse data related for instance to the temperature, humidity, $\mathbf{CO_2}$ etc. The goal of our paper is to show that with the Qarnot 
 platform, complex in-situ workflows for smart-homes and buildings could be developed. For this, we consider a typical problem that could be addressed in such environments: the detection of alarm sounds. Our paper proposes a general model for 
 orchestrating in-situ workflows on 
-the Qarnot platform and decline several implementations for alarm sounds detection. 
-We also provide an experimental evaluation of the implemented solutions where we 
-discuss of the acuracy and the runtime of the training process. The results we obtain are encouraging, they comfort the idea that the Qarnot
- model is certainly one of the most effective platform for the decentralization of IoT and machine learning systems. 
+the Qarnot platform and decline both a work-sharing-like and a work-stealing-like implementations for alarm sounds detection. 
+We also provide an experimental evaluation of the implemented solutions where we discuss of the acuracy and the runtime of the training process. The results we obtain are encouraging, they comfort the idea that the Qarnot model is certainly one of the most effective platform for the decentralization of IoT and machine learning systems. 
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -340,11 +338,10 @@ and update functions) and the concept of {\it Processors} used in the \texttt{ma
 of the Qarnot SDK. 
 The alarm detection framework we use for validating the orchestrator is based on energy, spectral and Mel-frequency cepstral features~\cite{Davis:1990:CPR:108235.108239}, \cite{pyAudioAnalysis}
 and a Pareto-selection method for choosing the best classifier from several techniques. % ATTENTION ICI : LES TECHNIQUES SONT EVALUEES SEPAREMENT DONC C'EST PAS VRAIMENT CA
-The techniques include: the support vector machine, the logistic regression and the K-Nearest Neighbour. Our second contribution is to propose several possible parallel % SEVERAL ? JE PENSE QU'ON AURA LE TEMPS QUE POUR UNE SEULE
-implementations for training the alarm framework. The implementations are based on the orchestrator we proposed.  
-Finally, we explore these different implementations and evaluate them on accuracy, 
-false and true positive rate and runtime performance. This evaluation clearly states how we can decide on the most appropriate 
-implementation. % PROBLEME ICI ON N'AURA PAS LE TEMPS DE TESTER PLUSIEURS IMPLEMENTATIONS
+The techniques include: the support vector machine, the logistic regression and the K-Nearest Neighbour. Our second contribution is to propose a possible parallel 
+implementation for training the alarm framework based on the orchestrator we proposed. Finally, we explore this implementation and evaluate its accuracy, 
+false and true positive rate and runtime performance. We compare two different types of work processing : a work-sharing-like in which the work is divided between the available nodes and a work-stealing-like in which the Q.ware scheduler runs an instance when nodes are available. This evaluation clearly states how we can decide on the most appropriate 
+implementation. 
 
 The remainder of the paper is organized as follows. In Section~\ref{Related}, we present the related works. 
 In Section~\ref{Framework}, we discuss of the acoustic alarm detection framework that we consider. In Section~\ref{Model}, we describe 
@@ -537,13 +534,13 @@ the first one is that its input must be a disk (which will be added it to the re
 With these three tools (QData, QFunc, QTask) one could create basic parallel workflows composed of functions and tasks. To go a step further in the abstraction, we created two other subclasses of QWork that represent higher level concepts : 
 \begin{itemize}
 \item \textbf{QParallelWork:} A QParallelWork instance has a list of QWorks (except QTasks) and a list of QTasks and runs all of them in parallel using different threads (here QTasks and other QWorks were separated because we use the \texttt{submit} method for QTasks which does not exist in the others).
-\item \textbf{QWorklow:} This is the highest concept since it represents the workflow itself. A QWorkflow task has a list of QWorks and processes them sequentially
+\item \textbf{QWorklow:} This is the highest concept since it represents the workflow itself. A QWorkflow task has a list of QWorks and runs them in a {\it greedy} way which means that it only runs a QWork when its needed inputs are available (i.e when the previous QWork in the list stops).
 \end{itemize}
 To sum up, there are 4 subclasses of QWork : QFunc for basic functions, QTasks for tasks, QParallelWork for multithreading and QWorkflow to combine them all. QData makes the link between them.
 
 By combining all these concepts, complex workflows can be implemented. Note that a QWorkflows can be put in a QParallelWork to run multiple workflows simultaneously. 
 
-Algorithms \ref{alg:Qwork}, \ref{alg:Qtask}, \ref{alg:Qparallel}, \ref{alg:Qworkflow} sum up in pseudo-code the ways these concepts handle a given input. A QWork will call its \texttt{process} method. A QFunc's \texttt{process} method calls the function. A QTask will add the inputs to its resources and submit the task to the Q.Ware scheduler. A QParallelWork will submit all QTasks and run all other QWorks in different threads and then wait for all of them to finish. A QWorkflow will run all its QWorks sequentially.
+Algorithms \ref{alg:Qwork}, \ref{alg:Qtask}, \ref{alg:Qparallel}, \ref{alg:Qworkflow} sum up in pseudo-code the ways these concepts handle a given input. A QWork will call its \texttt{process} method. A QFunc's \texttt{process} method calls the function. A QTask will add the inputs to its resources and submit the task to the Q.Ware scheduler. A QParallelWork will submit all QTasks and run all other QWorks in different threads and then wait for all of them to finish. A QWorkflow will run all its QWorks.
 
 Note that all QWorks which are not QTasks are processed locally, where the global QWorkflow is running, and all QTasks are submited to the Q.Ware scheduler for parallel processing. Moreover, the QTasks can be constrained to run the Q.rads of a house, a building on several buildings. In-Situ machine learning can then be done by running the global QWorkflow on one Q.rad of the house and constraining the QTasks to all the house's Q.rads.
 

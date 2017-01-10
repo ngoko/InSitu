@@ -487,8 +487,8 @@ to the applicant program. An illustration is provided in Figure~\ref{fig:arch}(a
 It is easy to notice that the mixer of Figure~\ref{fig:gen} can be implemented as an applicant program that request the audio streams  
 related to a home and then {\it mixes} the data with a set of alarms and significant sounds.
 
-In the processing viewpoint, the Qarnot SDK is based on three main concepts: the notion of task (referred to as {\it QTask}), 
-the notion of disk ({\it QDisk}) and the docker image. A task is an object oriented abstraction that natively refers to a 
+In the processing viewpoint, the Qarnot SDK is based on three main concepts: the notion of task, 
+the notion of disk and the docker image. A task is an object oriented abstraction that natively refers to a 
 docker or a set of docker containers to deploy and run. A task is associated with a docker image defined in the 
 parameter {\it constants["DOCKER\_REPO"]}. We can specify a set of input files for a task in defining a resource disk. 
 The input disk is defined in the list parameter {\it resources}. A task has a name and can be composed by subtasks (or frames).  
@@ -585,12 +585,12 @@ In all the algorithms presented, QWorks need a QData as input, therefore if one 
 \STATE find \texttt{w.name} in \texttt{d["receiver"]}, remove the corresponding rows from \texttt{d} and put them in \texttt{d'}
 \ENDFOR
 \FOR{\texttt{w} in in my list of QWorks}
-\STATE find \texttt{w.name} in \texttt{d'["receiver"]}, remove the corresponding rows from \texttt{d} and put them in \texttt{d'}
-\STATE create a thread to run \texttt{w}($d''$)
+\STATE find \texttt{w.name} in \texttt{d'["receiver"]}, remove the corresponding rows from \texttt{d'} and put them in \texttt{d$_2$}
+\STATE create a thread to run \texttt{w}(\texttt{d$_2$})
 \ENDFOR
 \FOR{\texttt{t} in in my list of QTasks}
-\STATE find \texttt{t.name} in \texttt{d'["receiver"]}, remove the corresponding rows from \texttt{d} and put them in \texttt{d'}
-\STATE \texttt{t.add\_input\_to\_resources}(\texttt{d'})
+\STATE find \texttt{t.name} in \texttt{d'["receiver"]}, remove the corresponding rows from \texttt{d'} and put them in \texttt{d$_3$}
+\STATE \texttt{t.add\_input\_to\_resources}(\texttt{d$_3$})
 \STATE \texttt{t.submit()}
 \ENDFOR
 \STATE wait for every thread and every task to end

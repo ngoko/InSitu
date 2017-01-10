@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.1.4)  10 JAN 2017 11:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.1.4)  10 JAN 2017 13:50
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1198,10 +1198,10 @@ Package pdftex.def Info: Figures/implementation_vertical.png used on input line
  732.
 (pdftex.def)             Requested size: 229.65393pt x 299.51369pt.
 
-(./_minted-acoustic/614DD3195EFF10C77C1516DD53E33A2DF3D3056C9A9C4C574425FE4EC69
+(./_minted-acoustic/28F57725BC94DEA104022611248D8E32F3D3056C9A9C4C574425FE4EC69
 0FD4E.pygtex
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <7> not available
-(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 5.
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 6.
 )
 Package mdframed Info: Not enough space on this page on input line 738.
  [8 <./Figures/implementation_vertical.png>]
@@ -1248,7 +1248,7 @@ live/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8
 a.pfb>
-Output written on acoustic.pdf (10 pages, 743430 bytes).
+Output written on acoustic.pdf (10 pages, 743137 bytes).
 PDF statistics:
  110 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream

@@ -1,5 +1,6 @@
 import selection as sel
 import qarnot
+import orchestration as orch
 import numpy as np
 LENGTH = 5*44100  # length (in samples) of audios
 # set qarnot connection

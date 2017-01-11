@@ -28,12 +28,31 @@
      "fig:implementation_diagram"
      "fig:implementation_code"
      "Proof-of-concept"
+     "fig:integration"
+     "table:dataset"
+     "table:params"
+     "fig:times_extraction"
+     "subfig:coarse_glob"
+     "subfig:coarse_ind"
+     "fig:coarse-grained"
+     "subfig:fine_glob"
+     "subfig:fine_ind"
+     "fig:fine-grained"
      "Conclusion")
     (TeX-add-symbols
      '("FORALLP" ["argument"] 1)
      '("norm" 1)
+     '("iseg" 1)
+     "nset"
+     "zset"
+     "rset"
+     "cset"
+     "qset"
      "algorithmicdoinparallel")
     (TeX-run-style-hooks
+     "multirow"
+     "amssymb"
+     "stmaryrd"
      "mdframed"
      "caption"
      "verbatim"
@@ -53,6 +72,5 @@
      "IEEEtran"
      "compsocconf"
      "conference"
-     "10pt"
-     "./Figures/Aggregation")))
+     "10pt")))
 

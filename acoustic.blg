@@ -14,45 +14,45 @@ Database file #1: acoustic.bib
 Warning--empty booktitle in Davis:1990:CPR:108235.108239
 
 Done.
-You've used 15 entries,
+You've used 16 entries,
             4039 wiz_defined-function locations,
-            925 strings with 11244 characters,
-and the built_in function-call counts, 13388 in all, are:
-= -- 1070
-> -- 311
-< -- 128
-+ -- 172
-- -- 49
-* -- 663
-:= -- 1932
-add.period$ -- 34
-call.type$ -- 15
-change.case$ -- 17
-chr.to.int$ -- 306
-cite$ -- 16
-duplicate$ -- 932
-empty$ -- 1095
-format.name$ -- 62
-if$ -- 3110
+            930 strings with 11373 characters,
+and the built_in function-call counts, 14293 in all, are:
+= -- 1148
+> -- 331
+< -- 138
++ -- 184
+- -- 52
+* -- 709
+:= -- 2066
+add.period$ -- 36
+call.type$ -- 16
+change.case$ -- 18
+chr.to.int$ -- 327
+cite$ -- 17
+duplicate$ -- 996
+empty$ -- 1159
+format.name$ -- 66
+if$ -- 3321
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 158
-newline$ -- 70
-num.names$ -- 17
-pop$ -- 357
+int.to.str$ -- 16
+missing$ -- 168
+newline$ -- 73
+num.names$ -- 18
+pop$ -- 374
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1026
+skip$ -- 1096
 stack$ -- 0
-substring$ -- 728
-swap$ -- 793
-text.length$ -- 26
+substring$ -- 778
+swap$ -- 854
+text.length$ -- 29
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 15
+type$ -- 16
 warning$ -- 1
-while$ -- 71
-width$ -- 17
-write$ -- 174
+while$ -- 75
+width$ -- 18
+write$ -- 185
 (There was 1 warning)

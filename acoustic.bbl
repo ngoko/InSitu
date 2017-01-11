@@ -111,4 +111,10 @@ S.~Nirjon, R.~F. Dickerson, P.~Asare, Q.~Li, D.~Hong, J.~A. Stankovic, P.~Hu,
   Services}, ser. MobiSys '13.\hskip 1em plus 0.5em minus 0.4em\relax New York,
   NY, USA: ACM, 2013, pp. 403--416.
 
+\bibitem{joder-essid-richard-2009}
+C.~Joder, S.~Essid, and G.~Richard, ``Temporal integration for audio
+  classification with application to musical instrument classification,''
+  \emph{IEEE Transactions on Audio, Speech, and Language Processing}, vol.~17,
+  no.~1, pp. 174--186, Jan 2009.
+
 \end{thebibliography}

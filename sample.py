@@ -1,5 +1,4 @@
 import qarnot
-
 conn = qarnot.Connection('samples.conf')
 task = conn.create_task('sample2-files', 'docker-batch', 1)
 input_disk = conn.create_disk('sample2-files-input-resource')

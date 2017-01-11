@@ -17,7 +17,6 @@ f22 = QFunc(func=lambda x:
              x.get_value('sender', 'f1')['data'][0]+1,
              name='f22',
              next_name='f3')
-
 f3 = QFunc(func=lambda x: 
            x.get_value('sender', 'f1')['data'][0] 
            + x.get_value('sender', 'f212')['data'][0] 

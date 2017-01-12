@@ -59,13 +59,6 @@ T.~Giannakopoulos, ``pyaudioanalysis: An open-source python library for audio
   signal analysis,'' \emph{PLOS one}, vol.~10, no.~12, pp. 1--17, December
   2015.
 
-\bibitem{Zaharia:2010:SCC:1863103.1863113}
-M.~Zaharia, M.~Chowdhury, M.~J. Franklin, S.~Shenker, and I.~Stoica, ``Spark:
-  Cluster computing with working sets,'' in \emph{Proceedings of the 2Nd USENIX
-  Conference on Hot Topics in Cloud Computing}, ser. HotCloud'10.\hskip 1em
-  plus 0.5em minus 0.4em\relax Berkeley, CA, USA: USENIX Association, 2010, pp.
-  10--10.
-
 \bibitem{DBLP:journals/cacm/DeanG10}
 J.~Dean and S.~Ghemawat, ``Mapreduce: a flexible data processing tool,''
   \emph{Commun. {ACM}}, vol.~53, no.~1, pp. 72--77, 2010.
@@ -98,11 +91,6 @@ D.~Watson and R.~Mandryk, ``An {In}-{Situ} {Study} of {Real}-{Life} {Listening}
   {Context},'' in \emph{Sound and {Music} {Computing} 2012}, Copenhagen,
   Denmark, 2012, pp. 11--16.
 
-\bibitem{Chu:2009:ESR:1650051.1650059}
-S.~Chu, S.~Narayanan, and C.-C.~J. Kuo, ``Environmental sound recognition with
-  time-frequency audio features,'' \emph{Trans. Audio, Speech and Lang. Proc.},
-  vol.~17, no.~6, pp. 1142--1158, Aug. 2009.
-
 \bibitem{Nirjon:2013:AMS:2462456.2464446}
 S.~Nirjon, R.~F. Dickerson, P.~Asare, Q.~Li, D.~Hong, J.~A. Stankovic, P.~Hu,
   G.~Shen, and X.~Jiang, ``Auditeur: a mobile-cloud service platform for
@@ -110,11 +98,5 @@ S.~Nirjon, R.~F. Dickerson, P.~Asare, Q.~Li, D.~Hong, J.~A. Stankovic, P.~Hu,
   Annual International Conference on Mobile Systems, Applications, and
   Services}, ser. MobiSys '13.\hskip 1em plus 0.5em minus 0.4em\relax New York,
   NY, USA: ACM, 2013, pp. 403--416.
-
-\bibitem{joder-essid-richard-2009}
-C.~Joder, S.~Essid, and G.~Richard, ``Temporal integration for audio
-  classification with application to musical instrument classification,''
-  \emph{IEEE Transactions on Audio, Speech, and Language Processing}, vol.~17,
-  no.~1, pp. 174--186, Jan 2009.
 
 \end{thebibliography}

@@ -1,0 +1,47 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{orchestration} \PYG{k+kn}{import}
+\PYG{c}{\PYGZsh{} define basic blocks}
+\PYG{n}{f1} \PYG{o}{=} \PYG{n}{QFunc}\PYG{p}{(}\PYG{n}{func}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} 
+           \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{x}\PYG{o}{.}\PYG{n}{get\PYGZus{}value}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}init\PYGZsq{}}\PYG{p}{)[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{],} 
+           \PYG{n}{name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f1\PYGZsq{}}\PYG{p}{,} 
+           \PYG{n}{next\PYGZus{}name}\PYG{o}{=}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}f211\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}f22\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}f3\PYGZsq{}}\PYG{p}{])}
+\PYG{n}{f211} \PYG{o}{=} \PYG{n}{QFunc}\PYG{p}{(}\PYG{n}{func}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} 
+             \PYG{n}{x}\PYG{o}{.}\PYG{n}{get\PYGZus{}value}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}f1\PYGZsq{}}\PYG{p}{)[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]} 
+             \PYG{o}{*} \PYG{n}{x}\PYG{o}{.}\PYG{n}{get\PYGZus{}value}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}init\PYGZsq{}}\PYG{p}{)[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{],}
+             \PYG{n}{name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f211\PYGZsq{}}\PYG{p}{,}
+             \PYG{n}{next\PYGZus{}name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f212\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{f212} \PYG{o}{=} \PYG{n}{QFunc}\PYG{p}{(}\PYG{n}{func}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} 
+             \PYG{n}{x}\PYG{o}{.}\PYG{n}{get\PYGZus{}value}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}f211\PYGZsq{}}\PYG{p}{)[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{/}\PYG{l+m+mf}{3.}\PYG{p}{,}
+             \PYG{n}{name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f212\PYGZsq{}}\PYG{p}{,}
+             \PYG{n}{next\PYGZus{}name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f3\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{f22} \PYG{o}{=} \PYG{n}{QFunc}\PYG{p}{(}\PYG{n}{func}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} 
+             \PYG{n}{x}\PYG{o}{.}\PYG{n}{get\PYGZus{}value}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}f1\PYGZsq{}}\PYG{p}{)[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}
+             \PYG{n}{name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f22\PYGZsq{}}\PYG{p}{,}
+             \PYG{n}{next\PYGZus{}name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f3\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{f3} \PYG{o}{=} \PYG{n}{QFunc}\PYG{p}{(}\PYG{n}{func}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} 
+           \PYG{n}{x}\PYG{o}{.}\PYG{n}{get\PYGZus{}value}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}f1\PYGZsq{}}\PYG{p}{)[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]} 
+           \PYG{o}{+} \PYG{n}{x}\PYG{o}{.}\PYG{n}{get\PYGZus{}value}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}f212\PYGZsq{}}\PYG{p}{)[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]} 
+           \PYG{o}{+} \PYG{n}{x}\PYG{o}{.}\PYG{n}{get\PYGZus{}value}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}f22\PYGZsq{}}\PYG{p}{)[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{],}
+           \PYG{n}{name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f3\PYGZsq{}}\PYG{p}{)}
+\PYG{c}{\PYGZsh{} define f21 workflow}
+\PYG{n}{f21} \PYG{o}{=} \PYG{n}{QWorkflow}\PYG{p}{(}\PYG{n}{workflow}\PYG{o}{=}\PYG{p}{[}\PYG{n}{f211}\PYG{p}{,} \PYG{n}{f212}\PYG{p}{],}
+               \PYG{n}{name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f21\PYGZsq{}}\PYG{p}{,}
+               \PYG{n}{next\PYGZus{}name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f3\PYGZsq{}}\PYG{p}{)}
+\PYG{c}{\PYGZsh{} define f2 parallel work}
+\PYG{n}{f2} \PYG{o}{=} \PYG{n}{QParallelWork}\PYG{p}{(}\PYG{n}{list\PYGZus{}of\PYGZus{}func}\PYG{o}{=}\PYG{p}{[}\PYG{n}{f21}\PYG{p}{,} \PYG{n}{f22}\PYG{p}{],}
+                  \PYG{n}{name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f2\PYGZsq{}}\PYG{p}{,}
+                  \PYG{n}{next\PYGZus{}name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}f3\PYGZsq{}}\PYG{p}{)}
+\PYG{c}{\PYGZsh{} define global workflow}
+\PYG{n}{f} \PYG{o}{=} \PYG{n}{QWorkflow}\PYG{p}{(}\PYG{n}{workflow}\PYG{o}{=}\PYG{p}{[}\PYG{n}{f1}\PYG{p}{,} \PYG{n}{f2}\PYG{p}{,} \PYG{n}{f3}\PYG{p}{],}
+              \PYG{n}{name}\PYG{o}{=}\PYG{l+s}{\PYGZsq{}workflow\PYGZsq{}}\PYG{p}{,}
+              \PYG{n}{verbose}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{)}
+\PYG{c}{\PYGZsh{} define input}
+\PYG{n}{d} \PYG{o}{=} \PYG{n}{QData}\PYG{p}{(\PYGZob{}}
+        \PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{:[}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{],}
+        \PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{:[}\PYG{l+s}{\PYGZsq{}init\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}init\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s}{\PYGZsq{}receiver\PYGZsq{}}\PYG{p}{:[}\PYG{l+s}{\PYGZsq{}f1\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}f211\PYGZsq{}}\PYG{p}{]}
+    \PYG{p}{\PYGZcb{})}
+\PYG{c}{\PYGZsh{} run the workflow}
+\PYG{n}{res} \PYG{o}{=} \PYG{n}{f}\PYG{p}{(}\PYG{n}{d}\PYG{p}{)}
+\PYG{k}{print}\PYG{p}{(}\PYG{n}{res}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{])}
+\end{Verbatim}

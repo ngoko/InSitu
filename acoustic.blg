@@ -8,51 +8,61 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: acoustic.bib
+You're missing a field name---line 58 of file acoustic.bib
+ : 
+ : % author = {Zaharia, Matei and Chowdhury, Mosharaf and Franklin, Michael J. and Shenker, Scott and Stoica, Ion},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 147 of file acoustic.bib
+ : 
+ : % author = {Chu, Selina and Narayanan, Shrikanth and Kuo, C.-C. Jay},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty booktitle in Davis:1990:CPR:108235.108239
 
 Done.
-You've used 16 entries,
+You've used 13 entries,
             4039 wiz_defined-function locations,
-            930 strings with 11373 characters,
-and the built_in function-call counts, 14293 in all, are:
-= -- 1148
-> -- 331
-< -- 138
-+ -- 184
-- -- 52
-* -- 709
-:= -- 2066
-add.period$ -- 36
-call.type$ -- 16
-change.case$ -- 18
-chr.to.int$ -- 327
-cite$ -- 17
-duplicate$ -- 996
-empty$ -- 1159
-format.name$ -- 66
-if$ -- 3321
+            908 strings with 10663 characters,
+and the built_in function-call counts, 11407 in all, are:
+= -- 910
+> -- 261
+< -- 108
++ -- 144
+- -- 41
+* -- 563
+:= -- 1656
+add.period$ -- 29
+call.type$ -- 13
+change.case$ -- 15
+chr.to.int$ -- 258
+cite$ -- 14
+duplicate$ -- 794
+empty$ -- 939
+format.name$ -- 52
+if$ -- 2646
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 168
-newline$ -- 73
-num.names$ -- 18
-pop$ -- 374
+int.to.str$ -- 13
+missing$ -- 134
+newline$ -- 64
+num.names$ -- 15
+pop$ -- 305
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1096
+skip$ -- 877
 stack$ -- 0
-substring$ -- 778
-swap$ -- 854
-text.length$ -- 29
+substring$ -- 614
+swap$ -- 669
+text.length$ -- 22
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 16
+type$ -- 13
 warning$ -- 1
-while$ -- 75
-width$ -- 18
-write$ -- 185
-(There was 1 warning)
+while$ -- 61
+width$ -- 15
+write$ -- 153
+(There were 2 error messages)

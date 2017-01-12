@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{qarnot}
+\PYG{n}{conn} \PYG{o}{=} \PYG{n}{qarnot}\PYG{o}{.}\PYG{n}{Connection}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}samples.conf\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{task} \PYG{o}{=} \PYG{n}{conn}\PYG{o}{.}\PYG{n}{create\PYGZus{}task}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sample2\PYGZhy{}files\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}docker\PYGZhy{}batch\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{input\PYGZus{}disk} \PYG{o}{=} \PYG{n}{conn}\PYG{o}{.}\PYG{n}{create\PYGZus{}disk}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sample2\PYGZhy{}files\PYGZhy{}input\PYGZhy{}resource\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{input\PYGZus{}disk}\PYG{o}{.}\PYG{n}{add\PYGZus{}file}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}input/lorem.txt\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{task}\PYG{o}{.}\PYG{n}{resources}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{input\PYGZus{}disk}\PYG{p}{)}
+\PYG{n}{task}\PYG{o}{.}\PYG{n}{constants}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}DOCKER\PYGZus{}CMD\PYGZsq{}}\PYG{p}{]} \PYG{o}{=}
+	\PYG{l+s}{\PYGZsq{}sh \PYGZhy{}c \PYGZdq{}cat lorem.txt | tr [:lower:] [:upper:] \PYGZgt{} LOREM.TXT\PYGZdq{}\PYGZsq{}}
+\PYG{n}{task}\PYG{o}{.}\PYG{n}{run}\PYG{p}{()}
+\end{Verbatim}

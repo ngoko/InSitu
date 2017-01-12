@@ -255,6 +255,11 @@ christophe.cerin@lipn.univ-paris13.fr}
 
 \maketitle
 
+\setlength{\belowcaptionskip}{0pt}
+\setlength{\intextsep}{1pt}
+\setlength{\dbltextfloatsep}{3pt}
+\setlength{\textfloatsep}{3pt}
+
 
 \begin{abstract}
 The need to build real-time, context-aware, secure and intelligent systems is pushing forward in-situ machine learning. 
@@ -265,11 +270,11 @@ collect diverse data related for instance to the temperature, humidity, $\mathbf
 platform, complex in-situ workflows for smart-homes and buildings could be developed. For this, we consider a typical problem that could be addressed
 in such environments: the detection of alarm sounds. Our paper proposes a general model for orchestrating in-situ workflows on 
 the Qarnot platform and an implementation for alarm sounds detection. 
-We also provide an experimental evaluation of the implemented solution where we discuss of the accuracy, granularity and scalability of the training process. The results we obtain are encouraging, they comfort the idea that the Qarnot model is certainly one of the most effective platform for the decentralization of IoT and machine learning systems. 
+We also provide an experimental evaluation of the implemented solution where we discuss of the accuracy, granularity of parallelism and scalability of the training process. The results we obtain are encouraging, they comfort the idea that the Qarnot model is certainly one of the most effective platform for the decentralization of machine learning systems. 
 \end{abstract}
 
 \begin{IEEEkeywords}
-in-situ machine learning; decentralized IoT systems; alarm sounds detection;  performance evaluation
+in-situ machine learning; decentralized machine-learning; alarm sounds detection;  performance evaluation
 
 \end{IEEEkeywords}
 
@@ -292,11 +297,9 @@ IoT revolution, this questioning led to the development of huge datacenters that
 However, this initial model showed several important limitations on privacy, Internet congestion, 
 response time~\cite{DBLP:conf/lcn/Roelands13}. As an alternative, several works propose to decentralize this original IoT model by deporting the IoT logic of traditional clouds into edge clouds or embedded systems that serve for computing the intelligence of a smart environment (home, building, city etc.). For machine learning, 
 this direction promotes {\it in-situ} solutions where one of the main challenge is to deploy complex machine learning 
-workloads into {\it modest} computing platforms available in homes, offices etc. In addition, for any machine learning problem, 
-we can then consider the calibration or the creation of context-aware datasets. 
-This paper follows this line of thought. In particular, we are convinced of the need to build decentralized machine learning 
+workloads into {\it modest} computing platforms available in homes, offices etc. In this paper, we are interested in building decentralized machine learning 
 systems that could locally train and improve models from homes or buildings in which their sensory data is issued. 
-Our paper proposes a solution that follows this direction in considering the utility computing model introduced by 
+Our paper discusses such a system in considering the utility computing model introduced by 
 Qarnot computing. 
 
 	\begin{figure*}[htbp]
@@ -321,20 +324,18 @@ The Qarnot model is based on two main products. The first is a new model of serv
 heat diffusion system, regulated by a thermostat. Each Q.rad (See Figure~\ref{fig:digital}) embeds several processors in addition to sensors 
 related to humidity, $\mathrm{CO_2}$, presence etc. The second Qarnot product is a new middleware (Q.ware) for on-demand computing. Q.ware manages 
 two types of requests: requests for processing cloud services and requests for heating. Its goal is to deploy and 
-adjust the run of cloud workload to meet the heat demand on Q.rads. For more details about the Qarnot model, we refer the interested 
-reader to~\cite{DBLP:conf/europar/Ngoko16}. 
+adjust the run of cloud workloads to meet the heat demand on Q.rads. For more details about the Qarnot model, we refer the interested 
+reader to~\cite{DBLP:conf/europar/Ngoko16}.
 
-For data or processes, the Qarnot model is very rich for in-situ machine learning. Indeed, in the data viewpoint, 
-its sensing capacities can be used to create local datasets for any machine problem to solve at the scale of a home or building. 
+Considering data or processes, the Qarnot model is very rich for in-situ machine learning. Indeed, in the data viewpoint, 
+its sensing capacities can be used to create local datasets for machine problems to solve at the scale of a home or building. 
 The Qarnot platform supports a data service (QaIoT) that collects sensory data in Q.rads 
 and make them available to programs designed for Q.rads. 
 In the viewpoint of processes, the distributed learning processes can be performed in the home or building for which we want to 
 build a learning system. The Qarnot platform includes a software development kit (SDK) for building local orchestrations 
 of processes in homes, buildings or cities.
-The global objective of this paper is to show that with these two tools, 
-complex in-situ machine learning workflows could be developed for smart-homes and buildings. We focus on a problem that is interesting to address with in-situ learning: the construction of alarm sound classifiers. 
-%The interest in this problem comes from the fact that
-The behavior of an alarm sound classifier will be related to the background noises that 
+The global objective of this paper is to show that with these two tools (QaIoT and the Qarnot SDK), 
+complex in-situ machine learning workflows could be developed for smart-homes and buildings. We focus on a problem that is interesting to address with in-situ learning: the construction of alarm sound classifiers.  Indeed, the behavior of an alarm sound classifier will be related to the background noises that 
 it was trained with. Thus, depending on the environment in which we are, it is important to have the right background noises.
 
 Our paper makes three important contributions. Firstly, we introduce a general orchestration system for implementing in-situ 
@@ -345,7 +346,7 @@ of the Qarnot SDK.
 The alarm detection framework we use for validating the orchestrator is based on energy, spectral and Mel-frequency cepstral features~\cite{Davis:1990:CPR:108235.108239}, \cite{pyAudioAnalysis}
 and a Pareto-selection method for choosing the best classifiers. We consider three techniques for building classifiers : the support vector machine (SVM), the logistic regression and the K-Nearest Neighbour (KNN). Our second contribution is to propose a possible parallel 
 implementation for training the alarm framework based on the orchestrator. Finally, we explore this implementation and evaluate its accuracy, 
-false and true positive rate and runtime performance. We discuss the best granularity (from coarse-grained to fine-grained) for the proposed implementation. For this, we divide the grid search uniformly between the parallel instances given to the Q.ware scheduler. The Q.ware scheduler puts the instances in a FIFO queue and runs them when a nodes are available. This evaluation clearly states how we can decide on the most appropriate implementation. 
+false and true positive rate and runtime performance. We discuss the best granularity (from coarse-grained to fine-grained) and the scalability of the proposed implementation.
 
 The rest of the paper is organized as follows. In Section~\ref{Related}, we present the related works. 
 In Section~\ref{Framework}, we discuss of the acoustic alarm detection framework that we consider. In Section~\ref{Model}, we describe 
@@ -359,15 +360,13 @@ Our contribution is to put into perspective with the recent advances that led to
 machine learning. Our work is also related to prior contributions in machine learning for acoustic alarm detection. 
 
 Regarding recent parallel machine learning tools, we propose to distinguish between three main trends. 
-The first trend includes the development of orchestrators for Big Data systems that are based on Hadoop~\footnote{http://hadoop.apache.org/}
-%, Spark~\cite{Zaharia:2010:SCC:1863103.1863113}
-or related systems. 
+The first trend includes the development of orchestrators for Big Data systems that are based on Hadoop~\footnote{http://hadoop.apache.org/} or related systems. 
 In these solutions, the parallelism is generally formulated within the Map-reduce paradigm~\cite{DBLP:journals/cacm/DeanG10}. 
-In the second trend, the restriction of the Map-reduce paradigm are overcome using more general graph-based abstractions like 
+In the second trend, the restrictions of the Map-reduce paradigm are overcome using more general graph-based abstractions like 
 the Directed Acyclic Graphs (DAG) (solutions that are related to the distributed GraphLab~\cite{Low:2012:DGF:2212351.2212354}).  Finally the last trend is related to the development of parallel systems for deep learning algorithms in which the key novelty is to exploit the parallelism at the GPU level~\cite{Raina:2009:LDU:1553374.1553486}.
 Our proposition is neither based on Map-reduce, nor on GPUs. As already said, the orchestrator we introduce 
 is based on an upper layer abstraction close to the one we can find in GraphLab. However, our conceptualization manipulates object 
-oriented concepts of the Qarnot SDK.In addition, our solution is specially designed for in-situ learning. 
+oriented concepts of the Qarnot SDK. In addition, our solution is specially designed for in-situ learning. 
 
 The field of supervised machine learning for audio classification (that includes alarm sound detection) is well-established. There is a large consensus on the class of features that are meaningful in this context~\cite{Mckinney03featuresfor,DBLP:journals/taslp/JoderER09} 
 and some classification methods like the logistic regression has been successfully applied in several cases. It was also showed 
@@ -375,10 +374,7 @@ that for sound detection systems to work in the real-world, it is important that
 background noises that are representative of the environment in which the classifiers will operate~\cite{DBLP:conf/icassp/SalamonB15}. 
 In other words, {\it in-situ} and context-aware learning is welcome on the problem. 
 
-On this point, the work of Diane Watson et al.~\cite{watson_-situ_2012} shows that music recommender system can be improved if we 
-account on the context in which the listener is.
-% There are also several works like the one of Chu et al.~\cite{Chu:2009:ESR:1650051.1650059} that focus on the classification of audio environments.
-The work that we found closely related to ours is the Auditeur system~\cite{Nirjon:2013:AMS:2462456.2464446}. The system proposes a context-aware solution for acoustic events detection on smartphones. 
+On the construction of machine learning systems with acoustic features, the Auditeur system~\cite{Nirjon:2013:AMS:2462456.2464446} is closely related to ours. The system proposes a context-aware solution for acoustic events detection on smartphones. 
 The Auditeur system is composed of: a phone client that captures, processes and can run a {\it classification plan} and a cloud 
 service that based on audio and contextual information sent by a phone could generate an appropriate classification plan to be 
 followed at the smartphone level. We did not investigate whether or not the workflow we propose could be applied 
@@ -389,7 +385,7 @@ data in a same environment which is more interesting for real-time and security.
 \subsection{General problem}
 
 We assume a home with a fire-alarm and a set of Q.rads. Each Q.rad embeds two microphones and can record the input audio 
-stream. We also assume that the sound is recorded at a sample rate of $F_s=44100Hz$ in a wav file. {\it The goal is to build  a detection system that given any wav file of $T$ samples could state whether or not it contains an alarm sound}.
+stream. We also assume that the sound is recorded at a fixed \footnote{we use $44100Hz$} sample rate in a wav file. {\it The goal is to build  a detection system that given any wav file of $T$ samples could state whether or not it contains an alarm sound}.
 
 The system to build has $3$ subsystems: a data collection system, a training system and a decision system. 
 The data collection system creates the dataset of wav files that will be used for training and validation. 
@@ -400,12 +396,12 @@ to explain how we create training dataset in-situ.
 
 \subsection{Data collection}
 
-The challenging question here is to make sure that the data use to build the classifiers are representative of the environment 
+The challenging question here is to make sure that the data used to build the classifiers are representative of the environment 
 in which the Q.rads are. We propose to consider two main approaches. The first is to interact with the user in the 
-home in order to record audio that include an alarm sound and those that do not. The data collection and training systems could be seen as a {\it machine teaching system}. In this philosophy, let us notice that the expertise and level of cooperation of the user will decide on the quality of the generated classifiers. The second approach (that we will prefer) consists in automatic generation of the dataset. For this, we suppose that we have a basis of alarm sounds that are the one we want to recognize. We also assume a basis of significative sounds like a baby cry or a music. In these audio records (alarm and significative sounds), there is no background noise. The goal of the data collection system is to create from this basis two datasets for training and evaluation where 
+home in order to record audio that include an alarm sound and those that do not. Thus, the data collection and training systems could be seen as a {\it machine teaching system}. In this philosophy, let us notice that the expertise and level of cooperation of the user will decide on the quality of the generated classifiers. The second approach (that we will prefer) consists in automatic generation of the dataset. For this, we suppose that we have a basis of alarm sounds that are the one we want to recognize. We also assume a basis of significative sounds like a baby cry or a music. In these audio records (alarm and significative sounds), there is no background noise. The goal of the data collection system is to create from this basis two datasets for training and evaluation where 
 the background noises of the environment is introduced. This is summarized in Figure~\ref{fig:gen}. 
-A challenge at this stage is to fix some programmability rules for recording background noises. We must also decide on the date at which we consider that a set of classifiers could be generated for exploitation. But due to space restriction, we will not discuss these details in this paper. However we will explain in Section~\ref{Model}, the 
-system architecture that Qarnot proposes for in-situ data collection and processing.
+A challenge at this stage is to fix some programmability rules for recording background noises. We must also decide on the date at which we consider that we have enough data for training. But due to space restriction, we will not discuss these details in this paper. However we will explain in Section~\ref{Model}, the 
+system architecture that Qarnot proposes for data collection.
 
 	\begin{figure}[hbtp]
 	\begin{center}
@@ -419,7 +415,7 @@ system architecture that Qarnot proposes for in-situ data collection and process
 \subsection{Training system}
 
 In Figure~\ref{fig:training}, we illustrate the training framework we consider in our problem. The representation follows the 
-BPMN notation (An empty lozenge is a join and a lozenge with a plus is a fork...). 
+BPMN notations (An empty lozenge is a join and a lozenge with a plus is a fork...). 
 
 	\begin{figure*}[htbp]
 	\centering
@@ -438,10 +434,10 @@ consisting of a set of parallel activities where the acoustic features are separ
 
 \item {\bf GSIN:} The framework implements a grid search process whose goal is to find the best classifiers depending on the 
 parameters we use. GSIN consists in the initialization of this grid search. The goal is to generate the possible configurations 
-we will use in the search of the best classifiers. 
+we will explore. 
 
 \item {\bf LKOCV:} Given an input configuration (generated in GSIN), this subprocess starts with the run of a 
-  time integration method whose goal is to refine the quality of information training acoustic features provide by aggregating their values in time (see \ref{subsec:extraction} and \cite{DBLP:journals/taslp/JoderER09}). With the refined features, the next activity in the subprocess consists in evaluating the classifier corresponding to the current configuration with a Leave-k-out cross-validation.
+  time integration method whose goal is to refine the quality of information which training acoustic features provide by aggregating their values in time (see \ref{subsec:extraction} and \cite{DBLP:journals/taslp/JoderER09}). With the refined features, the next activity in the subprocess consists in evaluating the classifier corresponding to the current configuration with a Leave-k-out cross-validation.
 %Our learning techniques include: the SVM, logistic regression and KNN. 
 
 \item {\bf PSEL:} From a list of classifiers whose False and True Positive rates (FPR, TPR) are defined (generated in LKOCV or EVAL), we select the ones that are in the Pareto front where we minimize the FPR and maximize the TPR.
@@ -461,8 +457,8 @@ connected. A program deployed on a connected device (or a Q.rad) can get access 
 it must first register to the QaIoT server by sending an Http request where it declines: the nature of the device (Q.rad, 
 raspberry etc.), the Id of the device, the role it intends to play (e.g: access to the audio stream of the cluster). If the 
 request is accepted a websocket communication will be established between the device and QaIoT in order to distribute the data 
-to service the data to the applicant program. Let us suppose that this communication can consist of servicing real-time data 
-to the applicant program. An illustration is provided in Figure~\ref{fig:arch}(a). 
+to service the data to the applicant program. In our case, the communication will consist in servicing real-time data 
+to the applicant program. An view of the QaIoT data service is given in Figure~\ref{subfig:qaiot}. 
 It is easy to notice that the mixer of Figure~\ref{fig:gen} can be implemented as an applicant program that request the audio streams  
 related to a home and then {\it mixes} the data with a set of alarms and significant sounds.
 
@@ -479,18 +475,18 @@ from the disks defined in {\it resources}, and will generate a result disk if th
           \begin{subfigure}[b]{0.4\textwidth}
             \centering
             \includegraphics[scale=0.25]{./Figures/DataService.png}
-            \caption{Data service}
+            \caption{Data service \label{subfig:qaiot}}
           \end{subfigure}
           \begin{subfigure}[b]{0.6\textwidth}
             \centering
             \inputminted[baselinestretch=1, bgcolor=LightGray, fontsize=\scriptsize]{python}{sample.py}
-            \caption{Example of scripts with the Qarnot SDK}
+            \caption{Example of scripts with the Qarnot SDK \label{subfig:sample}}
           \end{subfigure}
           \caption{Data service and Qarnot SDK example.} 
           \label{fig:arch}
 	\end{figure*}
 
-An example of script with the Qarnot SDK is proposed in Figure~\ref{fig:arch}(b). Finally, for in-situ learning, let us notice that 
+An example of script with the Qarnot SDK is proposed in Figure~\ref{fig:arch}. Finally, for in-situ learning, let us notice that 
 in using the constants of a task, we can constraint its execution to be done only on a Q.rad or a set of Q.rad (and therefore a home or a building).
 
 \section{Orchestrating the alarm detection framework} \label{Orchestrator}
@@ -504,29 +500,31 @@ These two concepts work together as follows (see algorithm \ref{alg:Qwork}): if 
 
 Subclasses of QWork can then be defined to differentiate what is done locally and what is done in parallel using the Qarnot platform : 
 \begin{itemize}
-\item \textbf{QFunc:} a QFunc is a QWork which processes a particular function given when instantiating the class
-\item \textbf{QTask:} a QTask is a QWork and a Task (from the qarnot SDK). The QTask class has two particularities : 
-the first one is that its input must be a disk (which will be added to the resources) or a serializable object (which will be put in a resource disk). This is done with a method called \texttt{add\_input\_to\_resources}. The second one is that there are two ways to run a QTask instance : \texttt{process} method (or calling the instance) which will submit the task and wait for it to be over, and the \texttt{submit} method which does not wait for the task to be over (which is useful for parallel tasks, see below). The output of a QTask is its results disk.
+\item \textbf{QFunc:} a QFunc is a QWork which processes a particular function locally.
+\item \textbf{QTask:} QTask inheritates from QWork and Task (from the qarnot SDK). The QTask class has two particularities : 
+the first one is that its input must be a disk (which will be added to the resources) or a serializable object (which will be put in a resource disk). This is done with a method called \texttt{add\_input\_to\_resources}. The second one is that there are two ways to run a QTask instance : \texttt{process} method (or calling the instance) which will submit the task and wait for it to be over, and the \texttt{submit} method which does not wait for the task to be over (which is useful for parallel tasks, see below). The output of a QTask is a results disk (as defined in the Qarnot SDK).
 \end{itemize}
-With these three tools (QData, QFunc, QTask) one could create basic parallel workflows composed of functions and tasks. To go a step further in the abstraction, we created two other subclasses of QWork that represent higher level concepts : 
+With these three tools (QData, QFunc, QTask) one could create basic parallel workflows composed of functions and tasks. To go a step further in the abstraction, we introduce two other subclasses of QWork that represent higher level concepts : 
 \begin{itemize}
 \item \textbf{QParallelWork:} A QParallelWork instance has a list of QWorks (except QTasks) and a list of QTasks and runs all of them in parallel using different threads (here QTasks and other QWorks were separated because we use the \texttt{submit} method for QTasks which does not exist in the others).
 \item \textbf{QWorklow:} This is the highest concept since it represents the workflow itself. A QWorkflow task has a list of QWorks and runs them in a {\it greedy} way which means that it only runs a QWork when its inputs are available (i.e when the previous QWork in the list stops).
 \end{itemize}
 To sum up, there are 4 subclasses of QWork : QFunc for basic functions, QTasks for tasks, QParallelWork for multithreading and QWorkflow to combine them all. QData makes the link between them.
 
-By combining all these concepts, complex workflows can be implemented. Note that a QWorkflows can be put in a QParallelWork to run multiple workflows simultaneously. 
+By combining all these concepts, complex workflows can be implemented. Note that a QWorkflow can be put in a QParallelWork to run multiple workflows simultaneously. 
 
 Algorithms \ref{alg:Qwork}, \ref{alg:Qtask}, \ref{alg:Qparallel}, \ref{alg:Qworkflow} sum up in pseudo-code the ways these concepts handle a given input. A QWork will call its \texttt{process} method. A QFunc's \texttt{process} method calls the function. A QTask will add the inputs to its resources and submit the task to the Q.Ware scheduler. A QParallelWork will submit all QTasks and run all other QWorks in different threads and then wait for all of them to finish. A QWorkflow will run all its QWorks.
 
-Note that all QWorks which are not QTasks are processed locally, where the global QWorkflow is running, and all QTasks are submited to the Q.Ware scheduler for parallel processing. Moreover, the QTasks can be constrained to run the Q.rads of a house, a building on several buildings. In-Situ machine learning can then be done by running the global QWorkflow on one Q.rad of the house and constraining the QTasks to all the house's Q.rads.
+Note that all QWorks which are not QTasks are processed locally, where the global QWorkflow is running, and all QTasks are submitted to the Q.Ware scheduler. In is important to precise that QTasks can be constrained to run in a specific Q.rad. Hence, our orchestrator manages two levels of scheduling : a local level where as soon as a Qwork can be done, it is processed or submitted to the Q.ware and the Q.ware level (external) where jobs are ran according to a FIFO (First In First Out) policy. Thus a QWorkflow can be strictly processed in a home.
 
 In all the algorithms presented, QWorks need a QData as input, therefore if to handle multiple input one can either get inputs as different QData rows and differentiate them using the \texttt{sender} (see for example \texttt{f211} in figure \ref{fig:orch_ex})
 or put a dictionary in the QData \texttt{data} column (see for example QCreateDisk below).
 
-\begin{algorithm}[H]
+\begin{algorithm}
 \caption{QWork call method}
 \label{alg:Qwork}
+% \footnotesize
+\small
 \begin{algorithmic}
 \REQUIRE \texttt{d} a QData instance
 \ENSURE returns \texttt{d} without my input, with my output
@@ -536,10 +534,11 @@ or put a dictionary in the QData \texttt{data} column (see for example QCreateDi
 \RETURN \texttt{d}
 \end{algorithmic}
 \end{algorithm}
-
-\begin{algorithm}[H]
+\begin{algorithm}
 \caption{QTask submit method}
 \label{alg:Qtask}
+%\footnotesize
+\small
 \begin{algorithmic}
 \REQUIRE \texttt{d} a QData instance
 \ENSURE adds the input to resources and submits the task
@@ -548,10 +547,11 @@ or put a dictionary in the QData \texttt{data} column (see for example QCreateDi
 \STATE submit the task
 \end{algorithmic}
 \end{algorithm}
-
 \begin{algorithm}
 \caption{QParallelWork call method}
 \label{alg:Qparallel}
+%\footnotesize
+\small
 \begin{algorithmic}
 \REQUIRE \texttt{d} a QData instance
 \ENSURE returns \texttt{d} without my QWorks and QTasks inputs and with their outputs
@@ -572,12 +572,13 @@ or put a dictionary in the QData \texttt{data} column (see for example QCreateDi
 \RETURN \texttt{d}
 \end{algorithmic}
 \end{algorithm}
-
 \begin{algorithm}
 \caption{QWorkflow process method}
 \label{alg:Qworkflow}
+%\footnotesize
+\small
 \begin{algorithmic}
-\REQUIRE \texttt{d} a QData instance
+ \REQUIRE \texttt{d} a QData instance
 \ENSURE runs the Qworks sequentially
 \STATE \texttt{in} $\leftarrow \texttt{d}$
 \FOR{\texttt{w} in my list of QWorks}
@@ -586,7 +587,6 @@ or put a dictionary in the QData \texttt{data} column (see for example QCreateDi
 \RETURN \texttt{in}
 \end{algorithmic}
 \end{algorithm}
-
 In the next subsections, we present a simple example and an implementation of the framework using the orchestrator.
  
 \subsection{A simple orchestration example}
@@ -658,9 +658,9 @@ To implement the framework with the orchestrator, we defined subclasses of QTask
 \item \textbf{QCreateDisk:} (inherits from QFunc) This function aims to create a disk with the dataset and all the code needed for selection.
   Its particular inputs are (here we will use a dictionary for multiple inputs)
   \begin{itemize}
-  \item The qarnot connection
+  \item The qarnot connection (which will define the building and home where the task will be scheduled)
   \item The directories of the files to put in the disk
-  \item The labels of the data (one label per directory)
+  \item The labels of the data (alarm or not alarm)
   \item A disk (if a disk in given, this function only adds the code for selection)
   \item The local root of directories and the one the user wants them to be in the disk
   \end{itemize}
@@ -673,7 +673,7 @@ To implement the framework with the orchestrator, we defined subclasses of QTask
 \item \textbf{QLKOCVTask:} (inherits from QTask) Given a disk of .csv features files, a list of parameters for grid search, this task aims to perform grid search in parallel. Each parallel instance performs Leave-k-out cross validation on the dataset and writes in a file the false and true positive rates.
   Its particular attributes are
   \begin{itemize}
-  \item The classification method
+  \item The classification method (logistic regression, KNN, SVM)
   \item The length (in samples) of the data
   \item The remote root to find data
   \item The grid of parameters to test (parameters for extracting features and hyperparameters, the grid is created from both types of parameters)
@@ -688,7 +688,7 @@ To implement the framework with the orchestrator, we defined subclasses of QTask
   \end{itemize}
 \item \textbf{QDownloadResults:} (inherits from QFunc) This is to download the selected classifiers and the results.
 \end{itemize}
-Figures \ref{fig:implementation_diagram} and \ref{fig:implementation_code} show a possible implementation of the framework using the orchestrator. Note that we added a QCreateDisk after QExtractFeaturesTask to add the code needed for selection (this can be avoided by putting the code in the docker repository used for the tasks).
+Figures \ref{fig:implementation_diagram} and \ref{fig:implementation_code} show the proposed implementation of the framework using the orchestrator. Note that we added a QCreateDisk after QExtractFeaturesTask to add the code needed for selection (this can be avoided by putting the code in the docker repository used for the tasks).
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{Figures/implementation.png}
@@ -701,18 +701,7 @@ Figures \ref{fig:implementation_diagram} and \ref{fig:implementation_code} show 
 \captionof{figure}{Source code of the proposed implementation.}
 \label{fig:implementation_code}
 \section{Experimental evaluation} \label{Proof-of-concept}
-The implemented framework was tested for alarm sounds detection which consists in a binary audio classification problem. Such a problem can be solved following a classic two steps approach : features extraction and classification. After explaining briefly the first step, we present here the results given by the framework. Finally, we compare different granularity strategies and discuss scalability of the implementation. We will denote by $T$ the length (in samples) of the signal which is recorded at a sample rate of $44100Hz$ and by $Y \in \{ 0, 1 \}$ the target which is equal to $1$ if the signal is an alarm sound and $0$ otherwise.
-\subsection{Features extraction}\label{subsec:extraction}
-Features are extracted on $K$ overlapping frames (called 'analysis frames') of the signal. A signal is then represented by $K$ vectors : $(x_k)_{k \in \iseg{0,K-1}}$ with $\forall k \in \iseg{0, K-1}, x_k \in \rset^d$ where $d$ is the number of features. These $K$ vectors are then integrated using several possible techniques. This integration means that we consider the sequence of features  $\left(x_{i,k}\right)_{k \in \iseg{0,K-1}}$ as a new signal which is cut in frames (called 'texture frames'). Then, some operations are done on these frames to aggregate the features \cite{DBLP:journals/taslp/JoderER09}. Classification is then performed on each vector of integrated features and a vote is done at the end to combine results (see figure \ref{fig:integration}). 
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics[width=0.3\textwidth]{Figures/integration.pdf}
-  \end{center}
-  \caption{Features extraction and integration \label{fig:integration}} 
-\end{figure}
-\subsection{Experimental setup}
-\subsubsection{Dataset}
-The dataset used for experiments was built using the method presented in figure \ref{fig:gen}. The alarm and the significative sounds (among which baby crying, laughs,power drill) were taken from the internet and ambiance sounds (office and talking) are $5s$ recordings of Qarnot Computing's office. We divided the ambiance sounds for training and testing sets and mixed them with the other sounds using different signal-to-noise ratio (SNR) to build the dataset. The division of the dataset is presented in table \ref{table:dataset}.
+The implemented framework was tested using a database built using the method presented in figure \ref{fig:gen}. The alarm and the significative sounds (among which baby crying, laughs,power drill) were taken from the internet and ambiance sounds (office and talking) are $5s$ recordings of Qarnot Computing's office. We divided the ambiance sounds for training and testing sets and mixed them with the other sounds using different signal-to-noise ratio (SNR) to build the dataset. The dataset is presented in table \ref{table:dataset}.
 \begin{table}[h]
   \centering
   \begin{tabular}{|*{3}{l|}}
@@ -743,12 +732,19 @@ The dataset used for experiments was built using the method presented in figure 
 \caption{dataset \label{table:dataset}}
 \end{table}
 
-\subsubsection{Parameters}
-The features extraction was performed using the library \texttt{pyAudioAnalysis} \cite{pyAudioAnalysis} which implements well known features for audio signal processing such as Zero crossing rate, energy, spectral centroid and spread or MFCCs. A total of $d=34$ features were used. These features were extracted using several analysis frames sizes, integration methods ('stack' = concatenating all vectors,
-% 'mean' = taking the mean,
-'mVar' = concatenating mean and variance) and texture frames sizes. For analysis frames and textures frames we used an 50\% overlap. This features are referred as 'features parameters'. 
 
-For the classification model, we used different techniques (SVM, logistic regression and KNN) with different hyperparameters possibilities, we then ran the framework to select for each classification technique the best combination of features parameters and hyperparameters. The list of all parameters used is presented in table \ref{table:params}.
+\subsection{Features}\label{subsec:extraction}
+Features are extracted on $K$ overlapping frames (called 'analysis frames') of the signal. A signal is then represented by $K$ vectors : $(x_k)_{k \in \iseg{0,K-1}}$ with $\forall k \in \iseg{0, K-1}, x_k \in \rset^d$ where $d$ is the number of features. These $K$ vectors are then integrated using several possible techniques. This integration means that we consider the sequence of features  $\left(x_{i,k}\right)_{k \in \iseg{0,K-1}}$ as a new signal which is cut in frames (called 'texture frames'). Then, some operations are done on these frames to aggregate the features \cite{DBLP:journals/taslp/JoderER09}. Classification is then performed on each vector of integrated features and a vote is done at the end to combine results (see figure \ref{fig:integration}). Note that the extraction part is done by a QExtractFeaturesTask and integration by QLKOCVTask.
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=0.3\textwidth]{Figures/integration.pdf}
+  \end{center}
+  \caption{Features extraction and integration \label{fig:integration}} 
+\end{figure}
+
+The features extraction was performed using the library \texttt{pyAudioAnalysis} \cite{pyAudioAnalysis} which implements well known features for audio signal processing such as Zero crossing rate, energy, spectral centroid and spread or MFCCs. A total of $d=34$ features were used. These features were extracted using several analysis frames sizes, integration methods ('stack' = concatenating all vectors, 'mVar' = concatenating mean and variance) and texture frames sizes. For analysis frames and textures frames we used an 50\% overlap. This features are referred as 'features parameters'. 
+\subsection{Experimental setup}
+The parameters we used for the grid search are of two sorts : features parameters (defined above) and hyperparameters (parameters of the classification method). We then ran the framework of figure \ref{fig:implementation_diagram} to select for each classification technique the best combination of features parameters and hyperparameters. The list of all parameters used is presented in table \ref{table:params}.
 
 \begin{table}[h]
   \centering
@@ -790,9 +786,9 @@ The classification method which gave the best results is logistic regression wit
 
 \subsection{Runtimes}
 To compute the runtimes, we used logistic regression and the total number of combinations to test was $129$. We ran two different experiments :
-The first one is compare different granularity strategies : the number of parameters is fixed ($129$) and each parallel instance performs a portion of the tests. As the number of instances increases ($10, 5, 20$ and $129$), the granularity becomes finer. The experiments were done with a number of nodes equal to $25$ which mean that for the last one ($129$ instances, which correspond to the finest granularity) the instances were put in a FIFO queue by the Q.ware scheduler and ran when nodes were available. The second experiment evaluates the scalability of the fine-grained solution : the number of parallel instances is equal to the number of parameters which varies ($25$,$50$,$100$ and $125$).  
+The gload of the first ones were to compare granularity strategies : the number of parameters is fixed ($129$) and each parallel instance of the QLKOCVTask performs a portion of the tests. As the number of instances increases ($10, 5, 20$ and $129$), the granularity becomes finer. The experiments were done with a number of nodes equal to $25$. The second experiment evaluates the scalability of the fine-grained solution : the number of parallel instances is equal to the number of parameters which varies ($25$,$50$,$100$ and $125$).  
 
-We also divided the workflow in two parts : the features extraction and the cross-validation/selection part since the first part is independent to the parameters (and it is therefore not relevant to run it several times). The second part was ran using the two approaches presented. Figure \ref{fig:times_extraction} show the results for the extraction part which was ran with $10$ parallel instance for the train set and $10$ others for the test set. The first bar shows the time it would have taken to run the extraction sequentially (it is divided in two : the train set and the test set). The two other bars show the time it took to run QCreateDisk and QExtractFeaturesTask for both sets. The global time of the extraction in parallel is the time of the slowest thread i.e the one for train set which gives a global speedup of $1.9$. Figure \ref{fig:granularity} show the results of granularity evaluation. The first reaction is that the workflow does perform better than the sequential implementation. In subfigure \ref{subfig:granularity_ind}, are presented the individual runtimes for QLKOCVTask and QSelectionTask. The main part of the workflow is QLKOCVTask and its runtime is reduced a lot by parallelism. On the contrary, the QSelectionTask would have performed better if it had been ran sequentially. The reason is simple : we implemented QSelectionTask as a sequential process which performs Pareto selection, evaluate the best classifiers on the test set and selects again. The reason we implemented it as a task is to simulate its behaviour on a Q.Rad. The difference between sequential and parallel times is due to loading times (the docker image, the data). However, this loss is not significative compared to the gain we get in QLKOCVTask.  Finally, in subfigure \ref{subfig:granularity_glob}, one can see that the speedup increases with the number of parallel instances and is at its maximum ($\approx 13$) for the finest granularity where there are as many instances as parameters. This behaviour made us believe that this fine-grained approach is the best and this is the reason why we tested scalability with this strategy. Figure \ref{fig:scalability} shows the results of this experiment. The main conclusion to have is that speedup increases with the number of parameters to test which is encouraging for scalability. However, the best scores show that testing more parameters is not always a good solution since they attain their optimum for 75 parameters. This question is inherently linked to the grid search strategy in which we decide to test all possibilities and will not be discussed here.
+We also divided the workflow in two parts : the features extraction and the cross-validation/selection part since the first part is independent to the parameters (and it is therefore not relevant to run it several times). The second part was ran using the two approaches presented. Figure \ref{fig:times_extraction} show the results for the extraction part which was ran with $10$ parallel instance for the train set and $10$ others for the test set (i.e $10$ parallel instances for each QExtractFeaturesTask). The first bar shows the time it would have taken to run the extraction sequentially (it is divided in two : the train set and the test set). The two other bars show the time it took to run QCreateDisk and QExtractFeaturesTask for both sets. The global time of the extraction in parallel is the time of the slowest thread i.e the one for train set which gives a global speedup of $1.9$. Figure \ref{fig:granularity} show the results of granularity evaluation. The first observation is that the workflow does perform better than the sequential implementation. In subfigure \ref{subfig:granularity_ind}, are presented the individual runtimes for QLKOCVTask and QSelectionTask. The main part of the workflow is QLKOCVTask and its runtime is reduced a lot by parallelism. On the contrary, the QSelectionTask would have performed better if it had been ran sequentially. The reason is simple : we implemented QSelectionTask as a sequential process which performs Pareto selection, evaluate the best classifiers on the test set and selects again. The reason we implemented it as a task is to simulate its behaviour on a Q.Rad. The difference between sequential and parallel times is due to loading times (the docker image, the data). However, this loss is not significative compared to the gain we get in QLKOCVTask.  Finally, in subfigure \ref{subfig:granularity_glob}, one can see that the speedup increases with the number of parallel instances and is at its maximum ($\approx 13$) for the finest granularity where there are as many instances as parameters. This behaviour made us believe that this fine-grained approach is the best and this is the reason why we tested scalability with this strategy. Figure \ref{fig:scalability} shows the results of this experiment. The main conclusion to have is that speedup increases with the number of parameters to test which is encouraging for scalability. However, the best scores show that testing more parameters is not always a good solution since they attain their optimum for 75 parameters. This question is inherently linked to the grid search strategy in which we decide to test all possibilities and will not be discussed here.
 
 \begin{figure}[h]
   \centering
@@ -832,11 +828,7 @@ We also divided the workflow in two parts : the features extraction and the cros
 \caption{Runtimes for fine-grained implementation \label{fig:scalability}}
 \end{figure}
 \section{Conclusion} \label{Conclusion}
-The way Qarnot Computing performs computation is ideal for in-situ machine learning since collecting data and selecting the best classifier for the created dataset can be done within the same home or building. This leads to an improvement in terms of privacy and response time. We introduced an orchestration solution to create computing frameworks on this infrastructure. This orchestrator is instinctive since its components directly refer to graph elements and can model complex machine-learning frameworks such as classifier selection for alarm sounds detection. The strategy we proposed to solve this problem, which
-performs features extraction, integration, cross-validation and classifiers selection, has shown good performances in term of accuracy of the outputs and scalability. However, the speedup obtained for features extraction could be increased by improving the way the infrastructure deals with data. 
-%[Todo: enrich the monitoring process of the orchestrator]
-
-
+The way Qarnot Computing performs computation is ideal for in-situ machine learning since collecting data and selecting the best classifier for the created dataset can be done within the same home or building. This leads to an improvement in terms of privacy and response time. We introduced an orchestration solution to create computing frameworks on this infrastructure. This orchestrator is intuitive since its components directly refer to graph elements and can model complex machine-learning frameworks such as classifier selection for alarm sounds detection. The strategy we proposed to solve this problem has shown good performances in term of accuracy of the outputs and scalability. However, the speedup obtained for features extraction could be increased by improving the way the infrastructure deals with data. 
 
 \bibliographystyle{./IEEEtran}
 \bibliography{acoustic}

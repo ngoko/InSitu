@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.1.4)  12 JAN 2017 13:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.1.4)  12 JAN 2017 16:59
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1126,16 +1126,16 @@ Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box71
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 256.
-LaTeX Font Info:    Try loading font information for U+stmry on input line 264.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 269.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-LaTeX Font Info:    Try loading font information for U+msa on input line 264.
+LaTeX Font Info:    Try loading font information for U+msa on input line 269.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 264.
+LaTeX Font Info:    Try loading font information for U+msb on input line 269.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1143,43 +1143,46 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <./Figures/rad.png, id=4, 256.5585pt x 258.7266pt>
 File: ./Figures/rad.png Graphic file (type png)
  <use ./Figures/rad.png>
-Package pdftex.def Info: ./Figures/rad.png used on input line 305.
+Package pdftex.def Info: ./Figures/rad.png used on input line 308.
 (pdftex.def)             Requested size: 113.80997pt x 99.58437pt.
 
 <./Figures/model.png, id=6, 633.8079pt x 257.2812pt>
 File: ./Figures/model.png Graphic file (type png)
  <use ./Figures/model.png>
-Package pdftex.def Info: ./Figures/model.png used on input line 310.
+Package pdftex.def Info: ./Figures/model.png used on input line 313.
 (pdftex.def)             Requested size: 304.45645pt x 99.58551pt.
 
-Overfull \hbox (102.10355pt too wide) in paragraph at lines 310--311
+Overfull \hbox (102.10355pt too wide) in paragraph at lines 313--314
  [][] 
  []
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-] [2 <./Figures/rad.png> <./Figures/model.png>]
-<./Figures/Aggregation.png, id=26, 516.93124pt x 294.09875pt>
+] [2 <./Figures/rad.png> <./Figures/model.png>] <./Figures/Aggregation.png, id=
+26, 516.93124pt x 294.09875pt>
 File: ./Figures/Aggregation.png Graphic file (type png)
 
 <use ./Figures/Aggregation.png>
-Package pdftex.def Info: ./Figures/Aggregation.png used on input line 412.
+Package pdftex.def Info: ./Figures/Aggregation.png used on input line 408.
 (pdftex.def)             Requested size: 155.08057pt x 88.2303pt.
 
 <./Figures/workflow.png, id=27, 1206.5075pt x 457.71pt>
 File: ./Figures/workflow.png Graphic file (type png)
 
 <use ./Figures/workflow.png>
-Package pdftex.def Info: ./Figures/workflow.png used on input line 426.
+Package pdftex.def Info: ./Figures/workflow.png used on input line 422.
 (pdftex.def)             Requested size: 361.95505pt x 137.31406pt.
  [3 <./Figures/Aggregation.png>]
-<./Figures/DataService.png, id=34, 649.42625pt x 269.005pt>
+<./Figures/DataService.png, id=35, 665.48625pt x 300.12125pt>
 File: ./Figures/DataService.png Graphic file (type png)
 
 <use ./Figures/DataService.png>
-Package pdftex.def Info: ./Figures/DataService.png used on input line 481.
-(pdftex.def)             Requested size: 162.35616pt x 67.25108pt.
+Package pdftex.def Info: ./Figures/DataService.png used on input line 477.
+(pdftex.def)             Requested size: 166.37115pt x 75.03012pt.
  (./_minted-acoustic/default-pyg-prefix.pygstyle) (./_minted-acoustic/default.p
 ygstyle)
 (./_minted-acoustic/D66B8588F6D27A050F651BEE36142750680B2B5E0F55D8CC950DDFE92BF
@@ -1190,17 +1193,20 @@ LaTeX Font Info:    Try loading font information for TS1+pcr on input line 3.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 ))
-Overfull \hbox (2.29994pt too wide) in paragraph at lines 479--489
+Overfull \hbox (2.29994pt too wide) in paragraph at lines 475--485
 [][] [] 
  []
 
 [4 <./Figures/workflow.png>]
+Underfull \vbox (badness 1383) has occurred while \output is active []
+
+
 (./_minted-acoustic/E8524A4B6649F8EE9DC55350032E3C63FCBA87B04EFE8228E42E16A38E0
 4A2A4.pygtex
 LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <7> not available
 (Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 3.
 )
-<./Figures/orchestration_example_diagram.png, id=38, 379.4175pt x 142.5325pt>
+<./Figures/orchestration_example_diagram.png, id=39, 379.4175pt x 142.5325pt>
 File: ./Figures/orchestration_example_diagram.png Graphic file (type png)
 
 <use ./Figures/orchestration_example_diagram.png>
@@ -1213,7 +1219,12 @@ Overfull \hbox (61.29604pt too wide) in paragraph at lines 596--652
  []
 
 [5 <./Figures/DataService.png>] [6 <./Figures/orchestration_example_diagram.png
->] <Figures/implementation.png, id=50, 1026.83624pt x 525.965pt>
+>]
+Underfull \hbox (badness 2401) in paragraph at lines 676--677
+[]\OT1/ptm/m/n/10 The clas-si-fi-ca-tion method (lo-gis-tic re-gres-sion,
+ []
+
+<Figures/implementation.png, id=52, 1026.83624pt x 525.965pt>
 File: Figures/implementation.png Graphic file (type png)
 
 <use Figures/implementation.png>
@@ -1225,9 +1236,6 @@ Overfull \hbox (9.03374pt too wide) in paragraph at lines 694--695
  []
 
 
-Underfull \vbox (badness 1237) has occurred while \output is active []
-
-
 (./_minted-acoustic/28F57725BC94DEA104022611248D8E32F3D3056C9A9C4C574425FE4EC69
 0FD4E.pygtex) [7 <./Figures/implementation.png>]
 
@@ -1235,107 +1243,108 @@ Package caption Warning: \captionsetup{type*=...} or \captionof
 (caption)                outside box or environment on input line 701.
 See the caption package documentation for explanation.
 
-<Figures/integration.pdf, id=55, 314.2099pt x 411.7533pt>
+<Figures/integration.pdf, id=57, 314.2099pt x 411.7533pt>
 File: Figures/integration.pdf Graphic file (type pdf)
 
 <use Figures/integration.pdf>
-Package pdftex.def Info: Figures/integration.pdf used on input line 709.
+Package pdftex.def Info: Figures/integration.pdf used on input line 740.
 (pdftex.def)             Requested size: 151.76854pt x 198.88333pt.
- [8 <./Figures/integration.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 776.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 772.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 776.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 772.
 
-Overfull \hbox (1.29178pt too wide) in paragraph at lines 755--781
+Overfull \hbox (1.29178pt too wide) in paragraph at lines 751--777
  [][] 
  []
 
-<Figures/learning_curve_logreg0_newdata.png, id=131, 578.16pt x 433.62pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<Figures/learning_curve_logreg0_newdata.png, id=58, 578.16pt x 433.62pt>
 File: Figures/learning_curve_logreg0_newdata.png Graphic file (type png)
 
 <use Figures/learning_curve_logreg0_newdata.png>
 Package pdftex.def Info: Figures/learning_curve_logreg0_newdata.png used on inp
-ut line 787.
+ut line 783.
 (pdftex.def)             Requested size: 202.3529pt x 151.76265pt.
- [9 <./Figures/learning_curve_logreg0_newdata.png>]
-<Figures/times_extraction.png, id=139, 1084.05pt x 361.35pt>
+ [8 <./Figures/integration.pdf>] <Figures/times_extraction.png, id=136, 1084.05
+pt x 361.35pt>
 File: Figures/times_extraction.png Graphic file (type png)
 
 <use Figures/times_extraction.png>
-Package pdftex.def Info: Figures/times_extraction.png used on input line 799.
+Package pdftex.def Info: Figures/times_extraction.png used on input line 795.
 (pdftex.def)             Requested size: 252.94499pt x 84.31075pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 799--800
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 795--796
  [][] 
  []
 
-<Figures/times_fixedparams_global_bars.png, id=140, 1445.4pt x 578.16pt>
+<Figures/times_fixedparams_global_bars.png, id=137, 1445.4pt x 578.16pt>
 File: Figures/times_fixedparams_global_bars.png Graphic file (type png)
 
 <use Figures/times_fixedparams_global_bars.png>
 Package pdftex.def Info: Figures/times_fixedparams_global_bars.png used on inpu
-t line 807.
+t line 803.
 (pdftex.def)             Requested size: 252.94499pt x 101.17068pt.
 
-<Figures/times_fixedparams_individual_bars.png, id=141, 1445.4pt x 578.16pt>
+<Figures/times_fixedparams_individual_bars.png, id=138, 1445.4pt x 578.16pt>
 File: Figures/times_fixedparams_individual_bars.png Graphic file (type png)
 
 <use Figures/times_fixedparams_individual_bars.png>
 Package pdftex.def Info: Figures/times_fixedparams_individual_bars.png used on 
-input line 812.
+input line 808.
 (pdftex.def)             Requested size: 252.94499pt x 101.17068pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 805--815
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 801--811
  []$ 
  []
 
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 805--815
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 801--811
  []$ 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Figures/times_increasparams_global_bars.png, id=142, 1445.4pt x 578.16pt>
+<Figures/times_increasparams_global_bars.png, id=139, 1445.4pt x 578.16pt>
 File: Figures/times_increasparams_global_bars.png Graphic file (type png)
 
 <use Figures/times_increasparams_global_bars.png>
 Package pdftex.def Info: Figures/times_increasparams_global_bars.png used on in
-put line 823.
+put line 819.
 (pdftex.def)             Requested size: 252.94499pt x 101.17068pt.
 
-<Figures/times_increasparams_individual_bars.png, id=143, 1445.4pt x 578.16pt>
+<Figures/times_increasparams_individual_bars.png, id=140, 1445.4pt x 578.16pt>
 File: Figures/times_increasparams_individual_bars.png Graphic file (type png)
 
 <use Figures/times_increasparams_individual_bars.png>
 Package pdftex.def Info: Figures/times_increasparams_individual_bars.png used o
-n input line 828.
+n input line 824.
 (pdftex.def)             Requested size: 252.94499pt x 101.17068pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 821--831
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 817--827
  []$ 
  []
 
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 821--831
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 817--827
  []$ 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(./acoustic.bbl
+[9 <./Figures/learning_curve_logreg0_newdata.png> <./Figures/times_extraction.p
+ng>] (./acoustic.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10 <./Figures/times_extraction.png> <./Figures/times_fixedparams_global_bars.
-png> <./Figures/times_fixedparams_individual_bars.png> <./Figures/times_increas
-params_global_bars.png> <./Figures/times_increasparams_individual_bars.png>])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1347,45 +1356,48 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[11] (./acoustic.aux) ) 
+[10 <./Figures/times_fixedparams_global_bars.png> <./Figures/times_fixedparams_
+individual_bars.png> <./Figures/times_increasparams_global_bars.png> <./Figures
+/times_increasparams_individual_bars.png>] (./acoustic.aux) ) 
 Here is how much of TeX's memory you used:
- 25590 strings out of 493105
- 499027 string characters out of 6137073
- 584394 words of memory out of 5000000
- 28580 multiletter control sequences out of 15000+600000
- 51071 words of font info for 118 fonts, out of 8000000 for 9000
+ 25594 strings out of 493105
+ 499087 string characters out of 6137073
+ 588853 words of memory out of 5000000
+ 28584 multiletter control sequences out of 15000+600000
+ 51287 words of font info for 119 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 55i,22n,54p,10451b,730s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.e
-nc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/stmaryrd/stmary10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/stmaryrd/stmary7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/cou
-rier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on acoustic.pdf (11 pages, 1255404 bytes).
+ 55i,22n,54p,10451b,728s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texliv
+e/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/stmaryrd/stmary7.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb
+8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on acoustic.pdf (10 pages, 1268905 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 158 compressed objects within 2 object streams
+ 227 PDF objects out of 1000 (max. 8388607)
+ 161 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

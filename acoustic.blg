@@ -13,6 +13,11 @@ You're missing a field name---line 58 of file acoustic.bib
  : % author = {Zaharia, Matei and Chowdhury, Mosharaf and Franklin, Michael J. and Shenker, Scott and Stoica, Ion},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+You're missing a field name---line 138 of file acoustic.bib
+ : 
+ : %  address = {Copenhagen, Denmark},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 You're missing a field name---line 147 of file acoustic.bib
  : 
  : % author = {Chu, Selina and Narayanan, Shrikanth and Kuo, C.-C. Jay},
@@ -24,45 +29,45 @@ I'm skipping whatever remains of this entry
 Warning--empty booktitle in Davis:1990:CPR:108235.108239
 
 Done.
-You've used 13 entries,
+You've used 12 entries,
             4039 wiz_defined-function locations,
-            908 strings with 10663 characters,
-and the built_in function-call counts, 11407 in all, are:
-= -- 910
-> -- 261
-< -- 108
-+ -- 144
-- -- 41
-* -- 563
-:= -- 1656
-add.period$ -- 29
-call.type$ -- 13
-change.case$ -- 15
-chr.to.int$ -- 258
-cite$ -- 14
-duplicate$ -- 794
-empty$ -- 939
-format.name$ -- 52
-if$ -- 2646
+            902 strings with 10494 characters,
+and the built_in function-call counts, 10617 in all, are:
+= -- 848
+> -- 246
+< -- 101
++ -- 136
+- -- 39
+* -- 527
+:= -- 1545
+add.period$ -- 27
+call.type$ -- 12
+change.case$ -- 14
+chr.to.int$ -- 240
+cite$ -- 13
+duplicate$ -- 737
+empty$ -- 864
+format.name$ -- 49
+if$ -- 2458
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 134
-newline$ -- 64
-num.names$ -- 15
-pop$ -- 305
+int.to.str$ -- 12
+missing$ -- 125
+newline$ -- 61
+num.names$ -- 14
+pop$ -- 282
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 877
+skip$ -- 815
 stack$ -- 0
-substring$ -- 614
-swap$ -- 669
-text.length$ -- 22
+substring$ -- 571
+swap$ -- 625
+text.length$ -- 21
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 13
+type$ -- 12
 warning$ -- 1
-while$ -- 61
-width$ -- 15
-write$ -- 153
-(There were 2 error messages)
+while$ -- 56
+width$ -- 14
+write$ -- 144
+(There were 3 error messages)

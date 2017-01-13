@@ -52,7 +52,8 @@
      "rset"
      "cset"
      "qset"
-     "algorithmicdoinparallel")
+     "algorithmicdoinparallel"
+     "IEEEbibitemsep")
     (TeX-run-style-hooks
      "multirow"
      "amssymb"

@@ -1,5 +1,5 @@
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{from} \PYG{n+nn}{orchestration} \PYG{k+kn}{import}
+\PYG{k+kn}{from} \PYG{n+nn}{orchestration} \PYG{k+kn}{import} \PYG{o}{*}
 \PYG{c}{\PYGZsh{} define basic blocks}
 \PYG{n}{f1} \PYG{o}{=} \PYG{n}{QFunc}\PYG{p}{(}\PYG{n}{func}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} 
            \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{x}\PYG{o}{.}\PYG{n}{get\PYGZus{}value}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}sender\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}init\PYGZsq{}}\PYG{p}{)[}\PYG{l+s}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{],} 

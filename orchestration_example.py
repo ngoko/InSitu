@@ -1,4 +1,4 @@
-from orchestration import
+from orchestration import *
 # define basic blocks
 f1 = QFunc(func=lambda x: 
            2*x.get_value('sender', 'init')['data'][0], 

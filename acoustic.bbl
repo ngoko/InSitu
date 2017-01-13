@@ -47,12 +47,10 @@ S.~B{\"{o}}ck, F.~Korzeniowski, J.~Schl{\"{u}}ter, F.~Krebs, and G.~Widmer,
   \url{http://arxiv.org/abs/1605.07008}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Davis:1990:CPR:108235.108239}
-S.~B. Davis and P.~Mermelstein, ``Readings in speech recognition,'' A.~Waibel
-  and K.-F. Lee, Eds.\hskip 1em plus 0.5em minus 0.4em\relax San Francisco, CA,
-  USA: Morgan Kaufmann Publishers Inc., 1990, ch. Comparison of Parametric
-  Representations for Monosyllabic Word Recognition in Continuously Spoken
-  Sentences, pp. 65--74.
+\bibitem{ganchev2005comparative}
+T.~Ganchev, N.~Fakotakis, and G.~Kokkinakis, ``Comparative evaluation of
+  various mfcc implementations on the speaker verification task,'' in
+  \emph{Proceedings of the SPECOM}, vol.~1, 2005, pp. 191--194.
 
 \bibitem{pyAudioAnalysis}
 T.~Giannakopoulos, ``pyaudioanalysis: An open-source python library for audio

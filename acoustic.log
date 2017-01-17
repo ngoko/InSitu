@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.1.4)  13 JAN 2017 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2017.1.4)  17 JAN 2017 14:26
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1170,21 +1170,18 @@ File: ./Figures/Aggregation.png Graphic file (type png)
 Package pdftex.def Info: ./Figures/Aggregation.png used on input line 423.
 (pdftex.def)             Requested size: 152.06929pt x 88.2303pt.
 
-<./Figures/workflow.png, id=27, 1206.5075pt x 457.71pt>
+<./Figures/workflow.png, id=27, 1333.98375pt x 457.71pt>
 File: ./Figures/workflow.png Graphic file (type png)
 
 <use ./Figures/workflow.png>
 Package pdftex.def Info: ./Figures/workflow.png used on input line 438.
-(pdftex.def)             Requested size: 361.95505pt x 137.31406pt.
-
-Underfull \vbox (badness 6364) has occurred while \output is active []
-
+(pdftex.def)             Requested size: 400.19821pt x 137.31406pt.
  [3 <./Figures/Aggregation.png>]
 <./Figures/DataService.png, id=35, 665.48625pt x 300.12125pt>
 File: ./Figures/DataService.png Graphic file (type png)
 
 <use ./Figures/DataService.png>
-Package pdftex.def Info: ./Figures/DataService.png used on input line 499.
+Package pdftex.def Info: ./Figures/DataService.png used on input line 500.
 (pdftex.def)             Requested size: 166.37115pt x 75.03012pt.
  (./_minted-acoustic/default-pyg-prefix.pygstyle) (./_minted-acoustic/default.p
 ygstyle)
@@ -1196,17 +1193,14 @@ LaTeX Font Info:    Try loading font information for TS1+pcr on input line 3.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 ))
-Overfull \hbox (2.29994pt too wide) in paragraph at lines 496--508
+Overfull \hbox (2.29994pt too wide) in paragraph at lines 497--509
 [][] [] 
  []
 
-
-Underfull \vbox (badness 1442) has occurred while \output is active []
-
- [4 <./Figures/workflow.png>]
+[4 <./Figures/workflow.png>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 596.
+               Default added (so using `htbp') on input line 597.
 
 
 (./_minted-acoustic/76369E1E180E29A83E6CE57FF983A088FCBA87B04EFE8228E42E16A38E0
@@ -1219,21 +1213,21 @@ File: ./Figures/orchestration_example_diagram.png Graphic file (type png)
 
 <use ./Figures/orchestration_example_diagram.png>
 Package pdftex.def Info: ./Figures/orchestration_example_diagram.png used on in
-put line 626.
+put line 627.
 (pdftex.def)             Requested size: 189.70828pt x 71.26607pt.
 
-Overfull \hbox (61.29604pt too wide) in paragraph at lines 617--675
+Overfull \hbox (61.29604pt too wide) in paragraph at lines 618--676
  [][] 
  []
 
 [5 <./Figures/DataService.png>] [6 <./Figures/orchestration_example_diagram.png
 >]
-Underfull \hbox (badness 1776) in paragraph at lines 696--699
+Underfull \hbox (badness 1776) in paragraph at lines 697--700
 \OT1/ptm/m/n/10 Q.rads and in par-al-lel) This task cor-re-sponds to
  []
 
 
-Underfull \hbox (badness 2401) in paragraph at lines 699--700
+Underfull \hbox (badness 2401) in paragraph at lines 700--701
 []\OT1/ptm/m/n/10 The clas-si-fi-ca-tion method (lo-gis-tic re-gres-sion,
  []
 
@@ -1241,10 +1235,10 @@ Underfull \hbox (badness 2401) in paragraph at lines 699--700
 File: Figures/implementation.png Graphic file (type png)
 
 <use Figures/implementation.png>
-Package pdftex.def Info: Figures/implementation.png used on input line 716.
+Package pdftex.def Info: Figures/implementation.png used on input line 717.
 (pdftex.def)             Requested size: 252.94499pt x 129.55675pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 716--717
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 717--718
  [][] 
  []
 
@@ -1253,7 +1247,7 @@ Overfull \hbox (9.03374pt too wide) in paragraph at lines 716--717
 0FD4E.pygtex) [7 <./Figures/implementation.png>]
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 726.
+(caption)                outside box or environment on input line 727.
 See the caption package documentation for explanation.
 
 
@@ -1263,19 +1257,21 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: Figures/integration.pdf Graphic file (type pdf)
 
 <use Figures/integration.pdf>
-Package pdftex.def Info: Figures/integration.pdf used on input line 767.
+Package pdftex.def Info: Figures/integration.pdf used on input line 768.
 (pdftex.def)             Requested size: 151.76854pt x 198.88333pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [8 <./Figures/integration.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 799.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 800.
 
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 799.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 800.
 
-Overfull \hbox (1.29178pt too wide) in paragraph at lines 778--804
+Overfull \hbox (1.29178pt too wide) in paragraph at lines 779--805
  [][] 
  []
 
@@ -1284,17 +1280,17 @@ File: Figures/learning_curve_logreg0_newdata.png Graphic file (type png)
 
 <use Figures/learning_curve_logreg0_newdata.png>
 Package pdftex.def Info: Figures/learning_curve_logreg0_newdata.png used on inp
-ut line 812.
+ut line 813.
 (pdftex.def)             Requested size: 202.3529pt x 151.76265pt.
 
 <Figures/times_extraction.png, id=136, 1084.05pt x 361.35pt>
 File: Figures/times_extraction.png Graphic file (type png)
 
 <use Figures/times_extraction.png>
-Package pdftex.def Info: Figures/times_extraction.png used on input line 837.
+Package pdftex.def Info: Figures/times_extraction.png used on input line 838.
 (pdftex.def)             Requested size: 252.94499pt x 84.31075pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 837--838
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 838--839
  [][] 
  []
 
@@ -1303,10 +1299,10 @@ File: Figures/times_fixedparams_global_bars.png Graphic file (type png)
 
 <use Figures/times_fixedparams_global_bars.png>
 Package pdftex.def Info: Figures/times_fixedparams_global_bars.png used on inpu
-t line 846.
+t line 847.
 (pdftex.def)             Requested size: 252.94499pt x 101.17068pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 843--848
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 844--849
  []$ 
  []
 
@@ -1315,10 +1311,10 @@ File: Figures/times_fixedparams_individual_bars.png Graphic file (type png)
 
 <use Figures/times_fixedparams_individual_bars.png>
 Package pdftex.def Info: Figures/times_fixedparams_individual_bars.png used on 
-input line 852.
+input line 853.
 (pdftex.def)             Requested size: 252.94499pt x 101.17068pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 849--855
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 850--856
  []$[]$ 
  []
 
@@ -1327,10 +1323,10 @@ File: Figures/times_increasparams_global_bars.png Graphic file (type png)
 
 <use Figures/times_increasparams_global_bars.png>
 Package pdftex.def Info: Figures/times_increasparams_global_bars.png used on in
-put line 864.
+put line 865.
 (pdftex.def)             Requested size: 252.94499pt x 101.17068pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 861--866
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 862--867
  []$ 
  []
 
@@ -1340,10 +1336,10 @@ File: Figures/times_increasparams_individual_bars.png Graphic file (type png)
 
 <use Figures/times_increasparams_individual_bars.png>
 Package pdftex.def Info: Figures/times_increasparams_individual_bars.png used o
-n input line 870.
+n input line 871.
 (pdftex.def)             Requested size: 252.94499pt x 101.17068pt.
 
-Overfull \hbox (9.03374pt too wide) in paragraph at lines 867--873
+Overfull \hbox (9.03374pt too wide) in paragraph at lines 868--874
  []$[]$ 
  []
 
@@ -1369,7 +1365,7 @@ arams_global_bars.png> <./Figures/times_increasparams_individual_bars.png>]
 Here is how much of TeX's memory you used:
  25594 strings out of 493105
  499081 string characters out of 6137073
- 581117 words of memory out of 5000000
+ 581197 words of memory out of 5000000
  28584 multiletter control sequences out of 15000+600000
  51287 words of font info for 119 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -1401,7 +1397,7 @@ exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim
 es/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
 
-Output written on acoustic.pdf (10 pages, 1270148 bytes).
+Output written on acoustic.pdf (10 pages, 1271495 bytes).
 PDF statistics:
  227 PDF objects out of 1000 (max. 8388607)
  161 compressed objects within 2 object streams

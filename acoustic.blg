@@ -8,17 +8,17 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: acoustic.bib
-You're missing a field name---line 57 of file acoustic.bib
+You're missing a field name---line 55 of file acoustic.bib
  : 
  : % author = {Zaharia, Matei and Chowdhury, Mosharaf and Franklin, Michael J. and Shenker, Scott and Stoica, Ion},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-You're missing a field name---line 137 of file acoustic.bib
+You're missing a field name---line 135 of file acoustic.bib
  : 
  : %  address = {Copenhagen, Denmark},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-You're missing a field name---line 146 of file acoustic.bib
+You're missing a field name---line 144 of file acoustic.bib
  : 
  : % author = {Chu, Selina and Narayanan, Shrikanth and Kuo, C.-C. Jay},
 (Error may have been on previous line)
@@ -30,43 +30,43 @@ I'm skipping whatever remains of this entry
 Done.
 You've used 12 entries,
             4039 wiz_defined-function locations,
-            898 strings with 10376 characters,
-and the built_in function-call counts, 10666 in all, are:
-= -- 853
+            897 strings with 10345 characters,
+and the built_in function-call counts, 10579 in all, are:
+= -- 841
 > -- 243
-< -- 103
+< -- 102
 + -- 137
 - -- 38
-* -- 527
-:= -- 1542
+* -- 517
+:= -- 1519
 add.period$ -- 26
 call.type$ -- 12
 change.case$ -- 12
 chr.to.int$ -- 246
 cite$ -- 12
-duplicate$ -- 739
-empty$ -- 869
+duplicate$ -- 735
+empty$ -- 867
 format.name$ -- 47
-if$ -- 2477
+if$ -- 2460
 int.to.chr$ -- 0
 int.to.str$ -- 12
-missing$ -- 125
-newline$ -- 61
+missing$ -- 124
+newline$ -- 59
 num.names$ -- 12
-pop$ -- 278
+pop$ -- 280
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 826
+skip$ -- 821
 stack$ -- 0
 substring$ -- 585
-swap$ -- 630
-text.length$ -- 21
+swap$ -- 623
+text.length$ -- 20
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 12
 warning$ -- 0
 while$ -- 55
 width$ -- 14
-write$ -- 144
+write$ -- 140
 (There were 3 error messages)

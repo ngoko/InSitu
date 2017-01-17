@@ -40,12 +40,9 @@ Y.~Low, D.~Bickson, J.~Gonzalez, C.~Guestrin, A.~Kyrola, and J.~M. Hellerstein,
   2012.
 
 \bibitem{DBLP:journals/corr/BockKSKW16}
-\BIBentryALTinterwordspacing
 S.~B{\"{o}}ck, F.~Korzeniowski, J.~Schl{\"{u}}ter, F.~Krebs, and G.~Widmer,
   ``madmom: a new python audio and music signal processing library,''
-  \emph{CoRR}, vol. abs/1605.07008, 2016. [Online]. Available:
-  \url{http://arxiv.org/abs/1605.07008}
-\BIBentrySTDinterwordspacing
+  \emph{CoRR}, vol. abs/1605.07008, 2016.
 
 \bibitem{ganchev2005comparative}
 T.~Ganchev, N.~Fakotakis, and G.~Kokkinakis, ``Comparative evaluation of
@@ -59,13 +56,13 @@ T.~Giannakopoulos, ``pyaudioanalysis: An open-source python library for audio
 
 \bibitem{DBLP:journals/cacm/DeanG10}
 J.~Dean and S.~Ghemawat, ``Mapreduce: a flexible data processing tool,''
-  \emph{Commun. {ACM}}, vol.~53, no.~1, pp. 72--77, 2010.
+  \emph{Commun. {ACM}}, vol.~53, pp. 72--77, 2010.
 
 \bibitem{Raina:2009:LDU:1553374.1553486}
 R.~Raina, A.~Madhavan, and A.~Y. Ng, ``Large-scale deep unsupervised learning
   using graphics processors,'' in \emph{Proceedings of the 26th Annual
   International Conference on Machine Learning}, ser. ICML '09.\hskip 1em plus
-  0.5em minus 0.4em\relax New York, NY, USA: ACM, 2009, pp. 873--880.
+  0.5em minus 0.4em\relax ACM, 2009, pp. 873--880.
 
 \bibitem{Mckinney03featuresfor}
 M.~Mckinney and J.~Breebaart, ``Features for audio and music classification,''

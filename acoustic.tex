@@ -462,6 +462,7 @@ in the subprocess consists in building the classifier corresponding to the curre
 
 \item {\bf EVAL:}  Assuming a list of classifiers and the input features of the testing dataset, we evaluate here the classifiers on the testing features. The TPR and FPR of each classifier are returned.
 
+\item {\bf TRAIN:} We train the selected classifiers with all data from training and testing sets.
 \end{itemize}
 
 It is important to notice that some activities in the proposed framework are parallel and distributed. For instance, at the beginning, 
@@ -702,7 +703,7 @@ To implement the framework with the orchestrator, we defined subclasses of QTask
   \item The grid of parameters to test (parameters for extracting features and hyperparameters, the grid is created from both types of parameters)
   \item Other arguments for cross validation
   \end{itemize}
-\item \textbf{QSelectionTask:} (inherits from QTask, processed on a Q.rad and sequentially i.e with only one parallel instance) This task corresponds to PSEL, EVAL and PSEL in figure \ref{fig:training}. It takes the results from QLKOCVTask and performs Pareto-selection to get the best classifiers on the training set. Then it tests these classifiers on the test set and performs Pareto-selection again to select the best classifiers.
+\item \textbf{QSelectionTask:} (inherits from QTask, processed on a Q.rad and sequentially i.e with only one parallel instance) This task corresponds to PSEL, EVAL and PSEL in figure \ref{fig:training}. It takes the results from QLKOCVTask and performs Pareto-selection to get the best classifiers on the training set. Then it tests these classifiers on the test set and performs Pareto-selection again to select the best classifiers. It returns the selected classifiers trained with all the dataset (train and test sets).
   Its particular attributes are
   \begin{itemize}
   \item The classification method
@@ -806,7 +807,7 @@ The parameters we used for the grid search are of two sorts: features parameters
 \subsection{Classifier selection results}
 We generated alarm sounds classifiers (with the SVM, KNN and logistic regression) in considering the workflow of 
 Figure~\ref{fig:implementation_diagram}. 
-The classification method which gave the best results is logistic regression with a FPR on the test set of $0.02$ and a TPR of $0.83$ (against for example FPR = $0.0007$ and TPR=$0.48$ for KNN). Figure \ref{fig:learning_curve} shows the learning curve for the selected classifier. This curve is encouraging since it corresponds to a high-variance situation in which increasing the size of the dataset is likely to give better results. This results shows that, used with the right classification method, the framework outputs accurate solutions. 
+The classification method which gave the best results is logistic regression with a FPR on the test set of $0.02$ and a TPR of $0.83$ (against for example FPR = $0.0007$ and TPR=$0.48$ for KNN and FPR=$0.24$ and TPR=$0.8$ for SVM). Figure \ref{fig:learning_curve} shows the learning curve for the selected classifier. This curve is encouraging since it corresponds to a high-variance situation in which increasing the size of the dataset is likely to give better results. This results shows that, used with the right classification method, the framework outputs accurate solutions. 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.4\textwidth]{Figures/learning_curve_logreg0_newdata.png}
@@ -876,7 +877,7 @@ Figure \ref{fig:times_extraction} shows the results for the extraction part whic
 \section{Conclusion} \label{Conclusion}
 The way Qarnot Computing performs computation is ideal for in-situ machine learning since collecting data and selecting the best classifier for the created dataset can be done within the same home or building. This leads to an improvement in terms of privacy and response time. We introduced an orchestration solution to create computing frameworks on this infrastructure. This orchestrator is intuitive since its components directly refer to graph elements and can model complex machine-learning frameworks such as classifier selection for alarm sounds detection. The strategy we proposed to solve this problem has shown good performances in term of accuracy of the outputs and scalability. However, the speedup obtained for features extraction could be increased by improving the infrastructure's data management mechanism.
 
-\def\IEEEbibitemsep{1pt plus .5pt}
+\def\IEEEbibitemsep{.1pt}
 \bibliographystyle{./IEEEtran}
 \bibliography{acoustic}
 

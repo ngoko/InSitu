@@ -504,7 +504,7 @@ files are available from the resource disk and and will generate output files in
           \begin{subfigure}[b]{0.6\textwidth}
             \captionsetup{skip=0pt}
             \centering
-            \inputminted[baselinestretch=1, bgcolor=LightGray, fontsize=\scriptsize]{python}{sample.py}
+            \inputminted[baselinestretch=.8, bgcolor=LightGray, fontsize=\scriptsize]{python}{sample.py}
             \caption{Example of scripts with the Qarnot SDK \label{subfig:sample}}
           \end{subfigure}
           \caption{Data service and Qarnot SDK example.} 
@@ -621,21 +621,26 @@ We present here a simple example using the orchestration, the workflow consists 
 \begin{figure*}[hbtp]
   \centering
   \begin{tabular}[c]{cc}
-    \begin{subfigure}[b]{.55\textwidth}
+    \begin{subfigure}[b]{.5\textwidth}
       \captionsetup{aboveskip=-12pt}
-      \inputminted[baselinestretch=1, bgcolor=LightGray,fontsize=\scriptsize]{python}{orchestration_example.py}
+      \inputminted[baselinestretch=.8, bgcolor=LightGray,fontsize=\tiny]{python}{orchestration_example.py}
       \caption{Source code. The output is $14.33$}
     \end{subfigure}
     &
     \begin{tabular}[b]{c}
       \begin{subfigure}[t]{.5\textwidth}
-      \includegraphics[scale=0.5]{./Figures/orchestration_example_diagram.png}
+        \centering
+
+      \includegraphics[scale=0.3]{./Figures/orchestration_example_diagram.png}
       \caption{Diagram}
     \end{subfigure}\\
 
     \begin{subfigure}[b]{.5\textwidth}
-       \captionsetup{aboveskip=-5pt}
-{\scriptsize
+      \captionsetup{aboveskip=-5pt}
+                 \centering
+
+       {\tiny
+
 \begin{verbatim}  
 FROM workflow: launching "f1"
 FROM f1: input: 
@@ -727,13 +732,14 @@ implements the processing done by PSEL, EVAL and PSEL in figure \ref{fig:trainin
 Figures \ref{fig:implementation_diagram} and \ref{fig:implementation_code} show the implementation proposed for the framework of Figure~\ref{fig:training} in using the orchestrator. All basic blocs are created using the above subclasses and are combined using QWorkflow and QParallelWork. Note that we added a QCreateDisk after QExtractFeaturesTask to add the code needed for selection (this can be avoided by putting the code in the docker repository used for the tasks).
 
 \begin{mdframed}[backgroundcolor=LightGray,topline=false, bottomline=false,leftline=false, rightline=false]
-\inputminted[baselinestretch=1, fontsize=\scriptsize]{python}{selection.py}
+\inputminted[baselinestretch=.8, fontsize=\scriptsize]{python}{selection.py}
 \end{mdframed}
 \captionof{figure}[belowskip=-20pt]{Source code of the proposed implementation.}
 \label{fig:implementation_code}
 \section{Experimental evaluation} \label{Proof-of-concept}
 The implemented framework was tested using a database built using the method presented in figure \ref{fig:gen}. The alarm and the significant sounds (among which baby crying, laughs,power drill) were taken from the internet and ambiance sounds (office and talking) are $5s$ recordings of Qarnot Computing's office. We divided the ambiance sounds for training and testing sets and mixed them with the other sounds using different signal-to-noise ratio (SNR) to build the dataset. The dataset is presented in table \ref{table:dataset}.
 \begin{table}[h]
+  \scriptsize
   \centering
   \begin{tabular}{|*{3}{l|}}
     \hline
@@ -781,6 +787,7 @@ The parameters we used for the grid search are of two sorts: features parameters
 
 \begin{table}[h]
   \centering
+  \scriptsize
   \begin{tabular}{|l|l|}
     \hline
     \multicolumn{2}{|c|}{Features parameters}                                          \\
@@ -806,7 +813,7 @@ The parameters we used for the grid search are of two sorts: features parameters
                                & $\gamma$ (for gaussian kernel) $\in \{1, 4, 16, 32\}$ \\       
   \hline
 
-  \end{tabular}
+\end{tabular}
 \caption{list of parameters \label{table:params}}
 \end{table}
 \subsection{Classifier selection results}
@@ -823,28 +830,27 @@ The classification method which gave the best results is logistic regression wit
 Here we present the runtime we obtained from runs of the workflow of Figure~\ref{fig:implementation_diagram} with the logistic 
 regression method. The grid search in this cases visited a total of $129$ configurations. We did two series of experiments. 
 The goal in the first serie was to find the best parallel granularity to run the workflow with. Indeed, 
-QExtractFeaturesTask and QLKOCVTask can be done in parallel. A question is then to know how 
-many parallel instances to run them with. This serie of experiments was done with a number of nodes (CPUs) equal to $34$. 
+QExtractFeaturesTask and QLKOCVTask can be done in parallel. A question is then to know the number of parallel instances to run them with.
+This serie of experiments was done with a number of nodes (CPUs) equal to $34$. 
 The second serie of experiments evaluates the scalability of the fine-grained solution (the number of parallel instance is equal to the 
 number of configurations). Here, the experiments were done on $25$ CPUs.
 One can notice that in these experiments, we do not have too many processors. This is because our intent was to be representative 
 of the practical situation we could have in a smart-homes and buildings.   
 
-
 \subsubsection{First serie}
 
 Figure \ref{fig:times_extraction} shows the runtime we measured for the QParallelWork block of 
 Figure~\ref{fig:implementation_diagram}~\footnote{the one inside the dashed green block}. 
-Let us recall that this QParallelWork performs the extraction of features  for the train and test set. 
+Let us recall that this QParallelWork performs the extraction of features for the train and test set. 
 For the train set, we ran QExtractFeaturesTask with $10$ parallel instances and for the train set we used and $10$ others instances. 
-The first bar in this figure shows the time it would have taken to run the extraction sequentially (it is divided in two: the train set and the test set). The two other bars show the runtime we observed in the extraction of the train and test set. The parallel completion time was 
-measured as the Makespan, i.e: the running time of the slowest instance. These first results globally showed that we benefit from parallelism. 
+The first bar in this figure shows the time it would have taken to run the extraction sequentially (it is divided in two: the train set and the test set). The two other bars show the runtime we observed in the extraction of the train and test set. The parallel completion time is measured as the makespan, i.e: the maximal duration of a parallel instance.
+These first results globally showed that we benefit from parallelism. 
 But, we are far from a linear speedup. This is due to the fact that our implementation of parallel features extraction 
 was too data intensive for being efficient in the network of distributed Q.rads of Qarnot. 
 
 We then proposed to continue our investigation on the granularity of parallelism without taking into account the runtime 
-of this QParallelWork. Figure \ref{fig:granularity}(a) shows the runtime we measured for the workflow, in assuming that we already 
-have all the features. The runtime are evaluated  with different number of parallel instances for QLKOCVTask. Here, the parallel runtime 
+of this QParallelWork (which do not depend on the parameters). Figure \ref{fig:granularity}(a) shows the runtime we measured for the workflow, assuming that we already 
+had all the features. The runtime are evaluated  with different numbers of parallel instances for QLKOCVTask. Here, the parallel runtime 
 is the makespan observed at the system level. It captures the difference between the first date where a process related to our 
 workflow is deployed in a Q.rad to the last date at which any process ended. 
 The workflow time is the makespan in the user viewpoint; i.e the difference between the date at which a request was sent for training 
@@ -853,42 +859,43 @@ and the date at which results was received.
 The first observation is that the workflow does perform better than the sequential implementation. 
 In addition, the speedup we observed is more important than the one we had in the extraction of features. 
 In subfigure \ref{subfig:granularity_ind}, we decomposed the runtime in order to see the cost of QLKOCVTask and QSelectionTask. 
-As one can notice, while QLKOCVTask, QSelectionTask does not. The reason is simple: we implemented QSelectionTask as a sequential 
-process which performs Pareto selection, evaluate the best classifiers on the test set and selects again. This 
+As one can notice, while QLKOCVTask performs better in parallel, QSelectionTask does not. The reason is simple: we implemented QSelectionTask as a sequential 
+process which performs Pareto selection, evaluate the best classifiers on the test set, selects again and trains the selected classifiers with all data. This 
 implementation choice was motivated by an initial intuition: the fact that the processes to do at this stage 
-were not tome consuming. As one can see the potential loss in parallelism for QSelectionTask is not significant, when compared to the 
-gain in QLKOCVTask.  Finally, in subfigure \ref{subfig:granularity_glob}, one can see that the speedup increases with the number of parallel instances and is at its maximum ($\approx 13$) for the finest granularity where there are as many instances as parameters. This behavior 
+were less time consuming than the cross-validation. As one can see the potential loss in parallelism for QSelectionTask is not significant, when compared to the 
+gain in QLKOCVTask. Finally, in subfigure \ref{subfig:granularity_glob}, one can see that the speedup increases with the number of parallel instances and is at its maximum ($\approx 13$) for the finest granularity where there are as many instances as parameters. This behavior 
 suggests that the fine-grained approach is the best. 
 
 
 \subsubsection{Second serie}
 
-In this second serie, we considered the workflow with $129$ instances for QLKOCVTask. Differently to the first serie where there was 
+In this second serie, we considered the workflow with as many instances as configurations for QLKOCVTask. Differently to the first serie where there was 
 always $129$ configurations to explore in the grid search, we made vary this number here from $25$ to $125$. 
 Figure \ref{fig:scalability} shows the results of this experiment. The main conclusion to have is that speedup increases with the number of parameters to test which is encouraging for scalability. However, the best scores show that testing more parameters is not always a good solution. Indeed, it is obvious that with the grid search strategy in which we test all possible configurations, adding parameters will never give worse scores but it is possible that it will not improve them. This can be seen in \ref{fig:scalability} where the scores attain their optimum for 75 parameters and stay stable after. This question is inherently linked to the grid search strategy in which we decide to test all possibilities and will not be discussed here.
 
 \setlength{\belowcaptionskip}{-6pt}
 \setlength{\intextsep}{0pt}
 \setlength{\textfloatsep}{1pt}
+\setlength{\floatsep}{0pt}
 
-\begin{figure}
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.5\textwidth]{Figures/times_extraction.png}
+  \includegraphics[width=0.4\textwidth]{Figures/times_extraction.png}
   \caption{Runtime for features extraction \label{fig:times_extraction}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
   \begin{center}
     \begin{subfigure}{0.5\textwidth}
-      \captionsetup{skip=0pt}
+      \captionsetup{skip=-1pt}
       \centering
-      \includegraphics[width=\textwidth]{Figures/times_fixedparams_global_bars.png}
+      \includegraphics[width=0.8\textwidth]{Figures/times_fixedparams_global_bars.png}
       \caption{\footnotesize Global results \label{subfig:granularity_glob}}
     \end{subfigure}\\
   \begin{subfigure}{0.5\textwidth}
-    \captionsetup{skip=0pt}
+    \captionsetup{skip=-1pt}
     \centering
-    \includegraphics[width=\textwidth]{Figures/times_fixedparams_individual_bars.png}
+    \includegraphics[width=0.8\textwidth]{Figures/times_fixedparams_individual_bars.png}
     \caption{\footnotesize Individual tasks results \label{subfig:granularity_ind}}
   \end{subfigure}
 \end{center}
@@ -898,15 +905,15 @@ Figure \ref{fig:scalability} shows the results of this experiment. The main conc
 \begin{figure}[h]
   \begin{center}
     \begin{subfigure}{0.5\textwidth}
-      \captionsetup{skip=0pt}
+      \captionsetup{skip=-1pt}
       \centering
-      \includegraphics[width=\textwidth]{Figures/times_increasparams_global_bars.png}
+      \includegraphics[width=0.8\textwidth]{Figures/times_increasparams_global_bars.png}
       \caption{\footnotesize Global results \label{subfig:scalability_glob}}
   \end{subfigure} \\
   \begin{subfigure}{0.5\textwidth}
-    \captionsetup{skip=0pt}
+    \captionsetup{skip=-1pt}
     \centering
-    \includegraphics[width=\textwidth]{Figures/times_increasparams_individual_bars.png}
+    \includegraphics[width=0.8\textwidth]{Figures/times_increasparams_individual_bars.png}
     \caption{\footnotesize Individual tasks results \label{subfig:scalability_ind}}
   \end{subfigure}
 \end{center}

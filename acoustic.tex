@@ -359,7 +359,7 @@ we explore this implementation and evaluate its accuracy,
 false and true positive rate and runtime performance. We discuss the best granularity (from coarse-grained to fine-grained) and the scalability of the proposed implementation.
 
 The rest of the paper is organized as follows. In Section~\ref{Related}, we present the related works. 
-In Section~\ref{Framework}, we discuss of the acoustic alarm detection framework that we consider. In Section~\ref{Model}, we describe 
+In Section~\ref{Framework}, we discuss the acoustic alarm detection framework that we consider. In Section~\ref{Model}, we describe 
 the key services that the Qarnot platform offers for in-situ machine learning. In Section~\ref{Orchestrator}, we explain 
 how we implement the training process of the framework that we introduced. A performance evaluation is done in 
 Section~\ref{Proof-of-concept} and we conclude in Section~\ref{Conclusion}.
@@ -412,7 +412,7 @@ to explain how we create training dataset in-situ.
 The challenging question here is to make sure that the data used to build the classifiers are representative of the environment 
 in which the Q.rads are. Our proposition is to create the training and testing datasets in mixing known alarm sounds with 
 background sounds of the environment for which we are building a classifier. More precisely, we assume that we have 
-samples of the alarm sounds, we want to recognize. We also assume samples of significant sounds like a baby cry or a music. 
+samples of the alarm sounds, we want to recognize. We also assume samples of significant sounds like a baby cry or music. 
 In these audio records (alarm and significant sounds), there is no background noise. The goal of the data collection 
 system is to locally create from these sounds two datasets for training and evaluation where 
 the background noises of the environment are introduced. This is summarized in Figure~\ref{fig:gen}. 
@@ -468,7 +468,7 @@ in the subprocess consists in building the classifier corresponding to the curre
 
 It is important to notice that some activities in the proposed framework are parallel and distributed. For instance, at the beginning, 
 the PFE activities could be done in parallel. The LKOCV activities also are performed in parallel (each parallel instance deals  
-with a configuration). In the next, we will discuss of the component of the Qarnot architecture for 
+with a configuration). In the next, we will discuss the component of the Qarnot architecture for 
 its implementation.
 
 \section{Architecture and programming model} \label{Model}
@@ -519,7 +519,8 @@ In the next, we will now present the orchestration system we propose for automat
 
 \section{Orchestrating the alarm detection framework} \label{Orchestrator}
 \subsection{The orchestrator API}
-The orchestrator API relies on 2 basic concepts (implemented in \texttt{python}): 
+The orchestrator API relies on 2 basic concepts:
+%(implemented in \texttt{python}): 
 \begin{itemize}
 \item \textbf{QWork:} This represents a work to be done during the workflow. QWorks correspond to boxes in a diagram. They have 2 main attributes: \texttt{name} which enables to differentiate the QWorks and \texttt{next\_name} which enables to define the next QWork in the workflow. A QWork also has a \texttt{process} method which represents the work to do. To make it even simpler, QWork instances are callable which means that they can be used as any function. 
 \item \textbf{QData:} This represents the inputs and outputs of QWorks. A QData instance is a dictionary with 3 keys (it can be seen as a 3 columns table and we will keep this analogy for clarity): \texttt{data} (the actual data), \texttt{sender} (the name of the QWork which sends the data) and \texttt{receiver} (the name of the QWork which receives the data). 
@@ -683,21 +684,21 @@ FROM f212: processing
 \subsection{Implementation of the framework}
 To implement the framework of Figure~\ref{fig:training} with the orchestrator, we defined subclasses of QTask and QFunc for the specific processes.
 \begin{itemize}
-\item \textbf{QCreateDisk:} (inherits from QFunc, processed locally and sequentially). At the beginning of the framework of 
-Figure~\ref{fig:training}, this Qwork creates the disks where training and testing data will be uploaded~\footnote{See Section~\ref{Model} for the concept of disk.}. 
-The particular attributes of this Qwork are:
+\item \textbf{QCreateDisk:} (inherits from QFunc, processed locally and sequentially). This QWork's goal is to create a disk with labelled data \footnote{See Section~\ref{Model} for the concept of disk.}. Moreover, the created disk will also contain the code needed for extraction, cross-validation and selection. This class has no particular attributes but the function it calls has 3 main inputs : 
   \begin{itemize}
   \item The qarnot connection (the concept is specific to the Qarnot SDK; a connection will define the building and home where the task will be scheduled)
   \item The directories of the files to put in the disk (this can be given as a disk)
   \item The labels of the data (alarm or not alarm)
   \end{itemize}
-\item \textbf{QExtractFeaturesTask:} (inherits from QTask, processed on Q.rads and in parallel). This Qwork corresponds to PFE in figure \ref{fig:training}. Given a disk of .wav file, a list of frame sizes and frame steps, this Qwork separates the files in a number of portions and extracts features of each portion in parallel. The output is a disk containing .csv files with the features.
+  As already mentioned, there are two ways to handle multiple inputs and here we chose to give these inputs as a QData containing a dictionary in the \texttt{data} column (see figure \ref{fig:implementation_code} where the input has the dictionaries \texttt{train\_args} and \texttt{test\_args} in the \texttt{data} column).  
+  Its output is a QData instance in which \texttt{data} is the created disk, \texttt{sender} is the \texttt{name} of the QCreateDisk and \texttt{receiver} is its \texttt{next\_name}. Instances of QCreateDisk will be used at the beginning to create the disks with the training and testing datasets and after features extraction to have the code needed for cross-validation and selection.  
+\item \textbf{QExtractFeaturesTask:} (inherits from QTask, processed on Q.rads and in parallel). This QWork corresponds to PFE in figure \ref{fig:training}. Given a disk of .wav file, a list of frame sizes and frame steps, this QWork separates the files in a number of portions and extracts features of each portion in parallel. The output is a QData in which \texttt{data} is a disk containing .csv files with the features, \texttt{sender} is the \texttt{name} of the QExtractFeaturesTask and \texttt{receiver} is its \texttt{next\_name}.
   Its particular attributes (in addition to those inherited from QTask) are
   \begin{itemize}
   \item The frame sizes and steps for extraction
   \item The remote root to find data
   \end{itemize}
-\item \textbf{QLKOCVTask:} (inherits from QTask, processed on Q.rads and in parallel) This Qwork corresponds to LKOCV in figure \ref{fig:training}. Given a disk of .csv features files, a list of parameters for grid search, this Qwork performs grid search in parallel. The process to make here consists of several parallel instances where each performs features integration (according to the parameters given) and a Leave-k-out cross validation on the dataset and writes in a file the false and true positive rates.
+\item \textbf{QLKOCVTask:} (inherits from QTask, processed on Q.rads and in parallel) This Qwork corresponds to LKOCV in figure \ref{fig:training}. Given a disk of .csv features files, a list of parameters for grid search, this Qwork performs grid search in parallel. The process to make here consists of several parallel instances where each performs features integration (according to the parameters given) and a Leave-k-out cross validation on the dataset and writes in a file the false and true positive rates. The output is a QData in which \texttt{data} is a disk containing the files with the scores of each configuration, \texttt{sender} is the \texttt{name} of the QLKOCVTask and \texttt{receiver} is its \texttt{next\_name}.
   Its particular attributes are: 
   \begin{itemize}
   \item The classification method (logistic regression, KNN, SVM)
@@ -707,7 +708,7 @@ The particular attributes of this Qwork are:
   \item Other arguments for cross validation
   \end{itemize}
 \item \textbf{QSelectionTask:} (inherits from QTask, processed on a Q.rad and sequentially i.e with only one parallel instance) This Qwork 
-implements the processing done by PSEL, EVAL and PSEL in figure \ref{fig:training}. It takes the results from QLKOCVTask and performs Pareto-selection to get the best classifiers on the training set. Then it tests these classifiers on the test set and performs Pareto-selection again to select the best classifiers. It returns the selected classifiers trained with all the dataset (train and test sets).
+implements the processing done by PSEL, EVAL and PSEL in figure \ref{fig:training}. It takes the results from QLKOCVTask and performs Pareto-selection to get the best classifiers on the training set. Then it tests these classifiers on the test set and performs Pareto-selection again to select the best classifiers. The output is a QData in which \texttt{data} is a disk containing the selected classifiers (serialized in .pkl files) trained with all the dataset (train and test sets), \texttt{sender} is the \texttt{name} of the QExtractFeaturesTask and \texttt{receiver} is its \texttt{next\_name}.
   Its particular attributes are: 
   \begin{itemize}
   \item The classification method
@@ -831,7 +832,7 @@ The second serie of experiment evaluates the scalability of the fine-grained sol
 number of configurations). Here we measure runtimes assuming that we want to find the best classifier from $25$,$50$,$100$ and $125$ 
 configurations. In this serie, the number of nodes (CPUs) was equal to $25$ .  
 
-Figure \ref{fig:times_extraction} shows the results for the extraction part which was ran with $10$ parallel instances for the train set and $10$ others for the test set (i.e $10$ parallel instances for each QExtractFeaturesTask). The first bar shows the time it would have taken to run the extraction sequentially (it is divided in two: the train set and the test set). The two other bars show the time it took to run QCreateDisk and QExtractFeaturesTask for both sets. The global time of the extraction in parallel is the time of the slowest instance i.e the one for train set which gives a global speedup of $1.9$. Figure \ref{fig:granularity} shows the results of granularity evaluation. The first observation is that the workflow does perform better than the sequential implementation. In subfigure \ref{subfig:granularity_ind}, are presented the individual runtime for QLKOCVTask and QSelectionTask. The main part of the workflow is QLKOCVTask and its runtime is reduced a lot by parallelism. On the contrary, the QSelectionTask would have performed better if it had been ran sequentially. The reason is simple: we implemented QSelectionTask as a sequential process which performs Pareto selection, evaluate the best classifiers on the test set and selects again. The reason we implemented it as a task is to simulate its behaviour on a Q.Rad. The difference between sequential and parallel times is due to loading times (the docker image, the data). However, this loss is not significant compared to the gain we get in QLKOCVTask.  Finally, in subfigure \ref{subfig:granularity_glob}, one can see that the speedup increases with the number of parallel instances and is at its maximum ($\approx 13$) for the finest granularity where there are as many instances as parameters. This behaviour made us believe that this fine-grained approach is the best and this is the reason why we tested scalability with this strategy. Figure \ref{fig:scalability} shows the results of this experiment. The main conclusion to have is that speedup increases with the number of parameters to test which is encouraging for scalability. However, the best scores show that testing more parameters is not always a good solution since they attain their optimum for 75 parameters. This question is inherently linked to the grid search strategy in which we decide to test all possibilities and will not be discussed here.
+Figure \ref{fig:times_extraction} shows the results for the extraction part which was ran with $10$ parallel instances for the train set and $10$ others for the test set (i.e $10$ parallel instances for each QExtractFeaturesTask). The first bar shows the time it would have taken to run the extraction sequentially (it is divided in two: the train set and the test set). The two other bars show the time it took to run QCreateDisk and QExtractFeaturesTask for both sets. The global time of the extraction in parallel is the time of the slowest instance i.e the one for train set which gives a global speedup of $1.9$. Figure \ref{fig:granularity} shows the results of granularity evaluation. Sequential time refers to the time it would have taken to run the process sequentially, parallel time is the computing time in parallel and workflow time it the total time of the workflow (which includes delays that can occur between the different QWorks). The first observation is that the workflow does perform better than the sequential implementation. In subfigure \ref{subfig:granularity_ind}, are presented the individual runtime for QLKOCVTask and QSelectionTask. The main part of the workflow is QLKOCVTask and its runtime is reduced a lot by parallelism. On the contrary, the QSelectionTask would have performed better if it had been ran sequentially. The reason is simple: we implemented QSelectionTask as a sequential process which performs Pareto selection, evaluate the best classifiers on the test set and selects again. The reason we implemented it as a task is to simulate its behaviour on a Q.Rad. The difference between sequential and parallel times is due to loading times (the docker image, the data). However, this loss is not significant compared to the gain we get in QLKOCVTask.  Finally, in subfigure \ref{subfig:granularity_glob}, one can see that the speedup increases with the number of parallel instances and is at its maximum ($\approx 13$) for the finest granularity where there are as many instances as parameters. This behaviour made us believe that this fine-grained approach is the best and this is the reason why we tested scalability with this strategy. Figure \ref{fig:scalability} shows the results of this experiment. The main conclusion to have is that speedup increases with the number of parameters to test which is encouraging for scalability. However, the best scores show that testing more parameters is not always a good solution. Indeed, it is obvious that with the grid search strategy in which we test all possible configurations, adding parameters will never give worse scores but it is possible that it will not improve them. This can be seen in \ref{fig:scalability} where the scores attain their optimum for 75 parameters and stay stable after. This question is inherently linked to the grid search strategy in which we decide to test all possibilities and will not be discussed here.
 
 \setlength{\belowcaptionskip}{-6pt}
 \setlength{\intextsep}{0pt}
